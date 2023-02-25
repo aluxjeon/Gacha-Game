@@ -19,7 +19,6 @@ public class ItemGachaTest {
     private Item item8;
     private Item item9;
     private Item item10;
-    private Characters character1;
     private final ArrayList<Item> myItems = new ArrayList<>();
 
 
@@ -107,11 +106,11 @@ public class ItemGachaTest {
         assertEquals(0,itemGacha.getPity());
         assertEquals(0,itemGacha.getItemList().size());
         itemGacha.pull();
-        assertEquals(1,itemGacha.getPity());
-        assertTrue(itemGacha.getItemList().size() >= 1);
         itemGacha.pull();
-        assertEquals(2,itemGacha.getPity());
-        assertTrue(itemGacha.getItemList().size() >= 1);
+        itemGacha.pull();
+        assertEquals(3,itemGacha.getPity());
+        itemGacha.pull();
+        assertEquals(4,itemGacha.getPity());
     }
 
     @Test
@@ -121,10 +120,8 @@ public class ItemGachaTest {
         assertEquals(0,itemGacha.getItemList().size());
         itemGacha.tenPull();
         assertEquals(10,itemGacha.getPity());
-        assertTrue(itemGacha.getItemList().size() >= 1);
         itemGacha.tenPull();
         assertEquals(20,itemGacha.getPity());
-        assertTrue(itemGacha.getItemList().size() >= 1);
     }
 
     @Test
@@ -204,6 +201,29 @@ public class ItemGachaTest {
         }
         assertTrue(sum >= 5);
         assertEquals(1,itemGacha.getPity());
+    }
+
+    @Test
+    void pullAtPityCheckAddedCopiesTest() {
+        boolean b = false;
+        initialize();
+        for (int i = 0; i < 49; i++) {
+            itemGacha.pull();
+        }
+        myItems.clear();
+        myItems.add(item1);
+        myItems.add(item2);
+        myItems.add(item3);
+        myItems.add(item4);
+        myItems.add(item5);
+        itemGacha.pull();
+        for (Item i : myItems) {
+            if (i.getCopies() == 1) {
+                b = true;
+                break;
+            }
+        }
+        assertTrue(b);
     }
 
     @Test

@@ -61,6 +61,8 @@ public class CharacterGacha implements Collectible {
             System.out.println("5 Star Character! " + (fiveStarCharacterRoster.get(fiveStarIndex)).getName());
             if (!(characterList.contains(fiveStarCharacterRoster.get(fiveStarIndex)))) {
                 characterList.add(fiveStarCharacterRoster.get(fiveStarIndex));
+            } else {
+                fiveStarCharacterRoster.get(fiveStarIndex).addCopies();
             }
         } else {
             System.out.println(nonPityGacha(luck, (fourStarCharacterRoster.get(fourStarIndex)),

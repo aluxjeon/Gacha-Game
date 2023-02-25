@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ItemGacha implements Collectible {
-    private ArrayList<Item> fourStarItemRoster;
-    private ArrayList<Item> fiveStarItemRoster;
+    private final ArrayList<Item> fourStarItemRoster;
+    private final ArrayList<Item> fiveStarItemRoster;
     private int itemPity = 0;
     private ArrayList<Item> itemList = new ArrayList<>();
 
@@ -59,6 +59,11 @@ public class ItemGacha implements Collectible {
             itemPity = 0;
             System.out.println("5 Star Item! " + (fiveStarItemRoster.get(fiveStarIndex)).getName());
             itemList.add(fiveStarItemRoster.get(fiveStarIndex));
+            if (!(itemList.contains(fiveStarItemRoster.get(fiveStarIndex)))) {
+                itemList.add(fiveStarItemRoster.get(fiveStarIndex));
+            } else {
+                fiveStarItemRoster.get(fiveStarIndex).addCopies();
+            }
         } else {
             System.out.println(nonPityGacha(luck, (fourStarItemRoster.get(fourStarIndex)),
                     (fiveStarItemRoster.get(fiveStarIndex))));

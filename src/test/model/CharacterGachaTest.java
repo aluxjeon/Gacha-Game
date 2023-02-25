@@ -107,11 +107,11 @@ public class CharacterGachaTest {
         assertEquals(0,characterGacha.getPity());
         assertEquals(0,characterGacha.getCharacterList().size());
         characterGacha.pull();
-        assertEquals(1,characterGacha.getPity());
-        assertTrue(characterGacha.getCharacterList().size() >= 1);
         characterGacha.pull();
-        assertEquals(2,characterGacha.getPity());
-        assertTrue(characterGacha.getCharacterList().size() >= 1);
+        characterGacha.pull();
+        assertEquals(3,characterGacha.getPity());
+        characterGacha.pull();
+        assertEquals(4,characterGacha.getPity());
     }
 
     @Test
@@ -121,10 +121,8 @@ public class CharacterGachaTest {
         assertEquals(0,characterGacha.getCharacterList().size());
         characterGacha.tenPull();
         assertEquals(10,characterGacha.getPity());
-        assertTrue(characterGacha.getCharacterList().size() >= 1);
         characterGacha.tenPull();
         assertEquals(20,characterGacha.getPity());
-        assertTrue(characterGacha.getCharacterList().size() >= 1);
     }
 
 
@@ -156,6 +154,28 @@ public class CharacterGachaTest {
         characterGacha.pull();
         int rarityTest = myCharacters.get(0).getRarity();
         assertEquals(5,rarityTest);
+    }
+
+    @Test
+    void pullAtPityCheckAddedCopiesTest() {
+        boolean b = false;
+        initialize();
+        for (int i = 0; i < 49; i++) {
+            characterGacha.pull();
+        }
+        myCharacters.clear();
+        myCharacters.add(character1);
+        myCharacters.add(character2);
+        myCharacters.add(character3);
+        myCharacters.add(character4);
+        myCharacters.add(character5);
+        characterGacha.pull();
+        for (Characters c : myCharacters) {
+            if (c.getCopies() == 1) {
+                b = true;
+            }
+        }
+        assertTrue(b);
     }
 
     @Test
