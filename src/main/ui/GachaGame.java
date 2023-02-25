@@ -10,9 +10,9 @@ public class GachaGame {
     private final Item baseSword = new Item("Poop Sword",3,true,0);
     private final ArrayList<Characters> myCharacterInventory = new ArrayList<>();
     private final ArrayList<Item> myItemInventory = new ArrayList<>();
-    private Currency myCurrency = new Currency();
+    private final Currency myCurrency = new Currency();
     private final CharacterGacha characterGacha = new CharacterGacha(myCharacterInventory);
-    private ItemGacha itemGacha = new ItemGacha(myItemInventory);
+    private final ItemGacha itemGacha = new ItemGacha(myItemInventory);
 
 
     public GachaGame() {
@@ -105,13 +105,11 @@ public class GachaGame {
 
     // EFFECTS: Transfer to the next menu accordingly
     private void processCommand(String feedback) {
-        String command = feedback;
-
-        if (command.equals("Gacha")) {
+        if (feedback.equals("Gacha")) {
             gachaLoop();
-        } else if (command.equals("Inventory")) {
+        } else if (feedback.equals("Inventory")) {
             inventoryLoop();
-        } else if (command.equals("Currency")) {
+        } else if (feedback.equals("Currency")) {
             currencyLoop();
         }
     }
@@ -131,9 +129,7 @@ public class GachaGame {
     }
 
     private void processGachaCommand(String feedBack) {
-        boolean go = true;
         String command = feedBack;
-
         if (command.equals("Pull Character") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
             characterGacha.pull();
             myCurrency.subCurrency(100);
@@ -185,12 +181,10 @@ public class GachaGame {
 
     private void processCurrencyCommand(String feedBack) {
         boolean go = true;
-        String command = feedBack;
         int amount;
-
-        if (command.equals("Check Currency")) {
+        if (feedBack.equals("Check Currency")) {
             System.out.println(myCurrency.getCurrency());
-        } else if (command.equals("Add Currency")) {
+        } else if (feedBack.equals("Add Currency")) {
             while (go) {
                 System.out.println("\n Insert Number of Currency To Add:");
                 System.out.println("\n It Takes 100 for a pull!");
@@ -210,12 +204,11 @@ public class GachaGame {
     */
     private void currencyLoop() {
         String command;
-        Boolean go = true;
+        boolean go = true;
 
         while (go) {
             currencyMenu();
             command = input.next();
-
             if (command.equals("Back")) {
                 go = false;
             } else {
@@ -255,7 +248,7 @@ public class GachaGame {
     }
 
     private ArrayList<String> itemDetailLoop() {
-        Boolean go = true;
+        boolean go = true;
         String command;
         while (go) {
             System.out.println("Insert name of the Item you want to see: \n");
@@ -273,7 +266,7 @@ public class GachaGame {
     }
 
     private ArrayList<String> characterDetailLoop() {
-        Boolean go = true;
+        boolean go = true;
         String command;
         while (go) {
             System.out.println("Insert name of the Character you want to see: \n");
@@ -291,28 +284,23 @@ public class GachaGame {
     }
 
     private void equipLoop() {
-        Boolean go = true;
-        String characterName;
-        String itemName;
-
+        boolean go = true;
+        String command;
         while (go) {
             System.out.println("Which Character Do You Want to Equip Items On: \n");
             System.out.println("Back \n");
-            characterName = input.next();
-
-            if (myCharacterInventory.contains(findCharacter(characterName))) {
+            command = input.next();
+            if (myCharacterInventory.contains(findCharacter(command))) {
                 System.out.println("Which Item Do You Want To Equip: \n");
                 System.out.println("Back \n");
-                itemName = input.next();
-                if (myItemInventory.contains(findItem(itemName))) {
-                    findCharacter(characterName).equipItem(findItem(itemName));
+                command = input.next();
+                if (myItemInventory.contains(findItem(command))) {
+                    findCharacter(command).equipItem(findItem(command));
                     System.out.println("\n Equipped!");
-                } else if (itemName.equals("Back")) {
-                    go = false;
                 } else {
-                    System.out.println("You don't have this item");
+                    System.out.println("Error");
                 }
-            } else if (characterName.equals("Back")) {
+            } else if (command.equals("Back")) {
                 go = false;
             } else {
                 System.out.println("You don't have this character");
@@ -348,7 +336,7 @@ public class GachaGame {
      *  of the options
      */
     private void inventoryLoop() {
-        Boolean go = true;
+        boolean go = true;
         String command;
 
         while (go) {

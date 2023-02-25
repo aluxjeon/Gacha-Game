@@ -16,12 +16,12 @@ public class Characters {
         this.copies = copies;
     }
 
-    //TODO: Check if character is holding item
-    //TODO: Return true if character is holding item; else false
+    //EFFECTS: Returns true if character holds item. Else return false
     public Boolean checkItem() {
         return this.equipment;
     }
 
+    //EFFECTS: Returns Item if character holds item (checkItem() == true), Else return null
     public Item getItem() {
         return this.item;
     }
@@ -41,6 +41,7 @@ public class Characters {
         return this.copies;
     }
 
+    //EFFECTS: Add 1 to character's copies
     public void addCopies() {
         copies++;
     }
