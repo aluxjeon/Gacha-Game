@@ -58,7 +58,6 @@ public class ItemGacha implements Collectible {
         if (itemPity == 50) {
             itemPity = 0;
             System.out.println("5 Star Item! " + (fiveStarItemRoster.get(fiveStarIndex)).getName());
-            itemList.add(fiveStarItemRoster.get(fiveStarIndex));
             if (!(itemList.contains(fiveStarItemRoster.get(fiveStarIndex)))) {
                 itemList.add(fiveStarItemRoster.get(fiveStarIndex));
             } else {
