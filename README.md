@@ -30,3 +30,6 @@ collecting characters and items, all of which is data that needs to be saved.
 - As a user, I want to be able to see all of the characters & items I have
 - As a user, I want to be able to equip items onto characters
 - As a user, I want to be able to unequip items from characters
+- As a user, I want to be able to see the specific details of items and characters
+- As a user, I want to be able to see my pity count
+- As a user, I want to be able to add currency and check my current currency
