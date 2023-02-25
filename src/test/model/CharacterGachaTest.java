@@ -17,13 +17,12 @@ public class CharacterGachaTest {
     private Characters character8;
     private Characters character9;
     private Characters character10;
-    private Item item1;
     private CharacterGacha characterGacha;
     private ArrayList<Characters> myCharacters;
 
     @BeforeEach
     void runBefore() {
-        item1 = new Item("Bow",5,true,0);
+        Item item1 = new Item("Bow",5,true,0);
         character1 = new Characters("Charlie",5,true,item1,0);
         character2 = new Characters("Alex",5,false,null,1);
         character3 = new Characters("Ray",5,false,null,2);
@@ -109,10 +108,10 @@ public class CharacterGachaTest {
         assertEquals(0,characterGacha.getCharacterList().size());
         characterGacha.pull();
         assertEquals(1,characterGacha.getPity());
-        assertTrue(characterGacha.getCharacterList().size() >= 0);
+        assertTrue(characterGacha.getCharacterList().size() >= 1);
         characterGacha.pull();
         assertEquals(2,characterGacha.getPity());
-        assertTrue(characterGacha.getCharacterList().size() >= 0);
+        assertTrue(characterGacha.getCharacterList().size() >= 1);
     }
 
     @Test
@@ -122,16 +121,24 @@ public class CharacterGachaTest {
         assertEquals(0,characterGacha.getCharacterList().size());
         characterGacha.tenPull();
         assertEquals(10,characterGacha.getPity());
-        assertTrue(characterGacha.getCharacterList().size() >= 0);
+        assertTrue(characterGacha.getCharacterList().size() >= 1);
         characterGacha.tenPull();
         assertEquals(20,characterGacha.getPity());
-        assertTrue(characterGacha.getCharacterList().size() >= 0);
+        assertTrue(characterGacha.getCharacterList().size() >= 1);
     }
 
 
     @Test
     void nonPityGachaTest() {
         assertEquals("5 Star Character! Charlie",characterGacha.nonPityGacha(100,character6, character1));
+        assertEquals("5 Star Character! Charlie",characterGacha.nonPityGacha(110,character6, character1));
+        int testCopies = 0;
+        for (Characters c : myCharacters) {
+            if (c.getName().equals("Charlie")) {
+                testCopies = c.getCopies();
+            }
+        }
+        assertEquals(1,testCopies);
         assertEquals("4 Star Character! Person",characterGacha.nonPityGacha(550,character6, character1));
         assertEquals("5 Star Character! Alex",characterGacha.nonPityGacha(125,character7, character2));
         assertEquals("4 Star Character! Elena",characterGacha.nonPityGacha(566,character7, character2));
@@ -161,12 +168,12 @@ public class CharacterGachaTest {
         myCharacters.clear();
         characterGacha.tenPull();
         ArrayList<Integer> rarityList = new ArrayList<>();
-        Integer sum = 0;
+        int sum = 0;
 
         for (Characters c : myCharacters) {
             rarityList.add(c.getRarity());
         }
-        for (Integer i : rarityList) {
+        for (int i : rarityList) {
             if (i == 5) {
                 sum += 5;
             }
@@ -186,7 +193,7 @@ public class CharacterGachaTest {
         myCharacters.clear();
         characterGacha.tenPull();
         ArrayList<Integer> rarityList = new ArrayList<>();
-        Integer sum = 0;
+        int sum = 0;
 
         for (Characters c : myCharacters) {
             rarityList.add(c.getRarity());
@@ -207,6 +214,17 @@ public class CharacterGachaTest {
             currentCharacterList.add(c.getName());
         }
         assertEquals(currentCharacterList,characterGacha.showAllCharacters());
+        ArrayList<Characters> yourCharacters = new ArrayList<>();
+        ArrayList<String> yourCharactersNames = new ArrayList<>();
+        yourCharacters.add(character1);
+        yourCharacters.add(character2);
+        yourCharacters.add(character6);
+        yourCharacters.add(character9);
+        for (Characters c : yourCharacters) {
+            yourCharactersNames.add(c.getName());
+        }
+        CharacterGacha otherCharacterGacha = new CharacterGacha(yourCharacters);
+        assertEquals(yourCharactersNames,otherCharacterGacha.showAllCharacters());
     }
 
     @Test
@@ -216,6 +234,12 @@ public class CharacterGachaTest {
         charlieList.add("Rarity: 5");
         charlieList.add("Equipment: Bow");
         charlieList.add("Copies: 0");
+        myCharacters.add(character1);
+        assertEquals(charlieList,characterGacha.showCharacterDetails("Charlie"));
+        myCharacters.clear();
+        myCharacters.add(character2);
+        myCharacters.add(character7);
+        myCharacters.add(character10);
         myCharacters.add(character1);
         assertEquals(charlieList,characterGacha.showCharacterDetails("Charlie"));
     }

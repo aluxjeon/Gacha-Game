@@ -20,7 +20,7 @@ public class ItemGachaTest {
     private Item item9;
     private Item item10;
     private Characters character1;
-    private ArrayList<Item> myItems = new ArrayList<>();
+    private final ArrayList<Item> myItems = new ArrayList<>();
 
 
     @BeforeEach
@@ -108,10 +108,10 @@ public class ItemGachaTest {
         assertEquals(0,itemGacha.getItemList().size());
         itemGacha.pull();
         assertEquals(1,itemGacha.getPity());
-        assertTrue(itemGacha.getItemList().size() >= 0);
+        assertTrue(itemGacha.getItemList().size() >= 1);
         itemGacha.pull();
         assertEquals(2,itemGacha.getPity());
-        assertTrue(itemGacha.getItemList().size() >= 0);
+        assertTrue(itemGacha.getItemList().size() >= 1);
     }
 
     @Test
@@ -121,15 +121,23 @@ public class ItemGachaTest {
         assertEquals(0,itemGacha.getItemList().size());
         itemGacha.tenPull();
         assertEquals(10,itemGacha.getPity());
-        assertTrue(itemGacha.getItemList().size() >= 0);
+        assertTrue(itemGacha.getItemList().size() >= 1);
         itemGacha.tenPull();
         assertEquals(20,itemGacha.getPity());
-        assertTrue(itemGacha.getItemList().size() >= 0);
+        assertTrue(itemGacha.getItemList().size() >= 1);
     }
 
     @Test
     void nonPityGachaTest() {
         assertEquals("5 Star Item! Bow",itemGacha.nonPityGacha(100,item6, item1));
+        assertEquals("5 Star Item! Bow",itemGacha.nonPityGacha(100,item6, item1));
+        int testCopies = 0;
+        for (Item i : myItems) {
+            if (i.getName().equals("Bow")) {
+                testCopies = i.getCopies();
+            }
+        }
+        assertEquals(1,testCopies);
         assertEquals("4 Star Item! Rock",itemGacha.nonPityGacha(550,item6, item1));
         assertEquals("5 Star Item! Sword",itemGacha.nonPityGacha(125,item7, item2));
         assertEquals("4 Star Item! Lance",itemGacha.nonPityGacha(566,item7, item2));
@@ -159,7 +167,7 @@ public class ItemGachaTest {
         myItems.clear();
         itemGacha.tenPull();
         ArrayList<Integer> rarityList = new ArrayList<>();
-        Integer sum = 0;
+        int sum = 0;
 
         for (Item i : myItems) {
             rarityList.add(i.getRarity());
@@ -184,7 +192,7 @@ public class ItemGachaTest {
         myItems.clear();
         itemGacha.tenPull();
         ArrayList<Integer> rarityList = new ArrayList<>();
-        Integer sum = 0;
+        int sum = 0;
 
         for (Item i : myItems) {
             rarityList.add(i.getRarity());
@@ -205,6 +213,17 @@ public class ItemGachaTest {
             currentItemList.add(i.getName());
         }
         assertEquals(currentItemList,itemGacha.showAllItems());
+        ArrayList<Item> yourItems = new ArrayList<>();
+        ArrayList<String> yourItemsNames = new ArrayList<>();
+        yourItems.add(item2);
+        yourItems.add(item6);
+        yourItems.add(item5);
+        yourItems.add(item1);
+        for (Item i : yourItems) {
+            yourItemsNames.add(i.getName());
+        }
+        ItemGacha otherItemGacha = new ItemGacha(yourItems);
+        assertEquals(yourItemsNames,otherItemGacha.showAllItems());
     }
 
     @Test
@@ -213,6 +232,12 @@ public class ItemGachaTest {
         bowList.add("Bow");
         bowList.add("Rarity: 5");
         bowList.add("Copies: 0");
+        myItems.add(item1);
+        assertEquals(bowList,itemGacha.showItemDetails("Bow"));
+        myItems.clear();
+        myItems.add(item2);
+        myItems.add(item5);
+        myItems.add(item4);
         myItems.add(item1);
         assertEquals(bowList,itemGacha.showItemDetails("Bow"));
     }
