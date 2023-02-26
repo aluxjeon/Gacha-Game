@@ -4,44 +4,60 @@ import java.io.CharConversionException;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class CharacterGacha implements Collectible {
     private final ArrayList<Characters> fourStarCharacterRoster;
     private final ArrayList<Characters> fiveStarCharacterRoster;
     private int characterPity = 0;
     private final ArrayList<Characters> characterList;
 
+    // EFFECTS: Make new CharacterGacha object where two arrayLists are created representing the possible
+    // characters you can pull for and the characterList (the list of characters you own) is set by characterList
     public CharacterGacha(ArrayList<Characters> characterList) {
         fourStarCharacterRoster = new ArrayList<>();
         fiveStarCharacterRoster = new ArrayList<>();
         this.characterList = characterList;
     }
 
+    //EFFECTS: Returns the character pity
     public int getPity() {
         return this.characterPity;
     }
 
-    // EFFECTS: Add 4* character into roster for pulls
+    //MODIFIES: this
+    //EFFECTS: Adds 4* character into roster for pulls
     public void addFourStarCharacterRoster(Characters characters) {
         fourStarCharacterRoster.add(characters);
     }
 
-    // EFFECTS: Add 5* character into roster for pulls
+    //MODIFIES: this
+    //EFFECTS: Adds 5* character into roster for pulls
     public void addFiveStarCharacterRoster(Characters characters) {
         fiveStarCharacterRoster.add(characters);
     }
 
+    //EFFECTS: Returns the list of possible 4* characters you can pull for
     public ArrayList<Characters> getFourStarCharacterRoster() {
         return this.fourStarCharacterRoster;
     }
 
+    //EFFECTS: Returns the list of possible 5* characters you can pull for
     public ArrayList<Characters> getFiveStarCharacterRoster() {
         return this.fiveStarCharacterRoster;
     }
 
+    //EFFECTS: Returns the list of characters you own
     public ArrayList<Characters> getCharacterList() {
         return this.characterList;
     }
 
+    //MODIFIES: this
+    //EFFECTS: 1. Randomly produces an int between 0 ~ 999, 0 ~ 4, and 0 ~ 4.
+    //         2. Adds one to character pity
+    //         3. If character pity is equal to 50, then reset pity to 0 and pull a 5* char.
+    //            If you don't have this char already, then add to your character inventory/
+    //            Else, add one to the copies of the char
+    //         4. If character pity isn't equal to 50, then run nonPityGacha with the set 5* & 4* char
     @Override
     public void pull() {
         int luck;
@@ -70,6 +86,10 @@ public class CharacterGacha implements Collectible {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: if luck is between [100,150], then return 5* char. if luck is between [500, 600], then return
+    // 4* char. If you already have the character, then add one to copy, else add char to inventory. Else, return poop.
+    // Don't add poop to inventory.
     public String nonPityGacha(int luck, Characters fourStarCharacter,Characters fiveStarCharacter) {
         if ((100 <= luck) && (luck <= 150)) {
             if (!(characterList.contains(fiveStarCharacter))) {
@@ -90,6 +110,8 @@ public class CharacterGacha implements Collectible {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: pulls ten times by looping pull() ten times
     @Override
     public void tenPull() {
         for (int i = 0; i < 10; i++) {
@@ -97,7 +119,7 @@ public class CharacterGacha implements Collectible {
         }
     }
 
-    //EFFECTS: Shows an arraylist of all character names of the characters you own
+    //EFFECTS: Returns an arraylist of all character names of the characters you own
     public ArrayList<String> showAllCharacters() {
         ArrayList<String> currentCharacterList = new ArrayList<>();
         int i = 0;
@@ -108,7 +130,7 @@ public class CharacterGacha implements Collectible {
         return currentCharacterList;
     }
 
-    //EFFECTS: Shows the name, rarity, and equipment of character in an arraylist
+    //EFFECTS: Returns the name, rarity, equipment, and copies of character in an arraylist
     public ArrayList<String> showCharacterDetails(String name) {
         int i = 0;
         ArrayList<String> characterDetails = new ArrayList<>();

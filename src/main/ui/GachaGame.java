@@ -19,6 +19,11 @@ public class GachaGame {
         runGachaGame();
     }
 
+    //MODIFIES: this
+    //EFFECTS: 1. First initialize items and characters
+    //         2. Starts a while loop that displays displayMenu() that shows a bunch of options
+    //         3. If user inputs "Quit", then print 'Logged out" and stop loop
+    //         4. If user inputs something else, then run processCommand with the user's input
     private void runGachaGame() {
         boolean go = true;
         String command;
@@ -40,6 +45,10 @@ public class GachaGame {
         System.out.println("\n Logged Out");
     }
 
+    //MODIFIES: this
+    //EFFECTS: 1. Sets all the possible characters you can pull for. Each character initially has the item baseSword and
+    //            has 0 copies
+    //         2. Adds 5* & 4* to their respective roster so we can pull for them randomly
     private void initializeCharacters() {
         //TODO: Initialize Characters
         Characters character1 = new Characters("TestName1",5,true, baseSword,0);
@@ -67,6 +76,10 @@ public class GachaGame {
         characterGacha.addFourStarCharacterRoster(character10);
     }
 
+    //MODIFIES: this
+    //EFFECTS: 1. Sets all the possible items you can pull for. Each items initially has the status of false and
+    //            has 0 copies
+    //         2. Adds 5* & 4* to their respective roster so we can pull for them randomly
     private void initializeItems() {
         //TODO: Initialize Items
         Item item1 = new Item("TestItem1",4,false,0);
@@ -74,9 +87,9 @@ public class GachaGame {
         Item item3 = new Item("TestItem3",4,false,0);
         Item item4 = new Item("TestItem4",4,false,0);
         Item item5 = new Item("TestItem5",4,false,0);
-        Item item6 = new Item("TestItem6",4,false,0);
-        Item item7 = new Item("TestItem7",4,false,0);
-        Item item8 = new Item("TestItem8",4,false,0);
+        Item item6 = new Item("TestItem6",5,false,0);
+        Item item7 = new Item("TestItem7",5,false,0);
+        Item item8 = new Item("TestItem8",5,false,0);
         Item item9 = new Item("TestItem9",5,false,0);
         Item item10 = new Item("TestItem10",5,false,0);
 
@@ -103,7 +116,8 @@ public class GachaGame {
         System.out.println("\n Quit");
     }
 
-    // EFFECTS: Transfer to the next menu accordingly
+    // EFFECTS: If the user inputs "Gacha", then run gachaLoop(), if the user inputs Inventory, then run
+    // inventoryLoop(), if the user inputs Currency, then run currencyLoop()
     private void processCommand(String feedback) {
         if (feedback.equals("Gacha")) {
             gachaLoop();
@@ -114,10 +128,8 @@ public class GachaGame {
         }
     }
 
-
     // ===================================================================================================
-    // EFFECTS: Display Gacha Menu
-    //TODO: Add Check pity option!
+    // EFFECTS: Display Gacha Menu with options regarding pulling
     private void gachaMenu() {
         System.out.println("\n Select From:");
         System.out.println("\n Pull Character");
@@ -128,25 +140,35 @@ public class GachaGame {
         System.out.println("\n Back");
     }
 
+    //MODIFIES: this
+    //EFFECTS: If feedBack = "Pull Character" & myCurrency.getCurrency() >= 100, then run
+    //         characterGacha.pull() & subtract 100 from currency
+    //         If feedBack = "10-Pull Character" & myCurrency.getCurrency() >= 1000, then run
+    //         characterGacha.tenPull() & subtract 1000 from currency
+    //         If feedBack = "Pull Item" & myCurrency.getCurrency() >= 100, then run
+    //         itemGacha.pull() & subtract 100 from currency
+    //         If feedBack = "10-Pull Item" & myCurrency.getCurrency() >= 1000, then run
+    //         itemGacha.tenPull() & subtract 1000 from currency
+    //         If feedBack = "Show Pity", then display the character and item pity
+    //         Else, display error
     private void processGachaCommand(String feedBack) {
-        String command = feedBack;
-        if (command.equals("Pull Character") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
+        if (feedBack.equals("Pull Character") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
             characterGacha.pull();
             myCurrency.subCurrency(100);
             System.out.println("Pulled!");
-        } else if (command.equals("10-Pull Character") && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
+        } else if (feedBack.equals("10-Pull Character") && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
             characterGacha.tenPull();
             myCurrency.subCurrency(1000);
             System.out.println("10-Pulled!");
-        } else if (command.equals("Pull Item") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
+        } else if (feedBack.equals("Pull Item") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
             itemGacha.pull();
             myCurrency.subCurrency(100);
             System.out.println("Pulled!");
-        } else if (command.equals("10-Pull Item") && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
+        } else if (feedBack.equals("10-Pull Item") && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
             itemGacha.tenPull();
             myCurrency.subCurrency(1000);
             System.out.println("10-Pulled!");
-        } else if (command.equals("Show Pity")) {
+        } else if (feedBack.equals("Show Pity")) {
             System.out.println("\n Character Pity: " + characterGacha.getPity());
             System.out.println("\n Item Pity: " + itemGacha.getPity());
         } else {
@@ -154,6 +176,9 @@ public class GachaGame {
         }
     }
 
+    //MODIFIES: this (through processGachaCommand())
+    //EFFECTS: starts a loop with the gachaMenu() being displayed. If the user inputs "Back", then break. Else
+    // run processGachaCommand with the user's inputs
     private void gachaLoop() {
         boolean go = true;
         String command;
@@ -179,6 +204,11 @@ public class GachaGame {
         System.out.println("\n Back");
     }
 
+    //REQUIRES: amount >= 0
+    //MODIFIES: this
+    //EFFECTS: If feedBack = "Check Currency", then display your current amount of currency
+    //         If feedBack = "Add Currency", then start a loop with the display asking how much to add
+    //         and then if amount >= 0, run myCurrency.addCurrency with the amount
     private void processCurrencyCommand(String feedBack) {
         boolean go = true;
         int amount;
@@ -197,11 +227,10 @@ public class GachaGame {
         }
     }
 
-    /*
-     * EFFECTS: While at the currencyMenu, if command = "Back", then stop loop & return to displayMenu
-     *  If command = anything else, then run processCurrencyCommand(Command) which leads to "Check Currency"
-     * or "Add Currency" model methods
-    */
+    //MODIFIES: this (through processCurrencyCommand())
+    //EFFECTS: While at the currencyMenu, if command = "Back", then stop loop & return to displayMenu
+    // If command = anything else, then run processCurrencyCommand(Command) which leads to "Check Currency"
+    // or "Add Currency" model methods
     private void currencyLoop() {
         String command;
         boolean go = true;
@@ -229,8 +258,15 @@ public class GachaGame {
         System.out.println("\n Back");
     }
 
+    //MODIFIES: this
+    //EFFECTS: If feedBack = "Show All Characters", then display characterGacha.showAllCharacters(), which
+    //         should list out all the names of the characters you own
+    //         If feedBack = "Show Character Details", then display characterDetailLoop()
+    //         If feedBack = "Show All Item", then display itemGacha.showAllItems(), which should
+    //         list out all the names of the items you own
+    //         If feedBack = "Show All Items", then display itemDetailLoop()
+    //         If feedBack = "Equip Items", then run equipLoop()
     private void processInventoryCommand(String feedBack) {
-        String characterName = "";
         String itemName = "";
 
         if (feedBack.equals("Show All Characters")) {
@@ -241,12 +277,16 @@ public class GachaGame {
             System.out.println(itemGacha.showAllItems());
         } else if (feedBack.equals("Show Item Details")) {
             System.out.println(itemDetailLoop());
-            itemGacha.showItemDetails(itemName);
         } else if (feedBack.equals("Equip Items")) {
             equipLoop();
         }
     }
 
+    //EFFECTS: start while loop while displaying a question asking what item to show.
+    //         If command = "Back", then stop loop and go back to processInventoryCommand()
+    //         If command = something else, then check it is an item you have. If you do have the item
+    //         then return an arrayList with the item's details, else display that you don't have this item &
+    //         return null
     private ArrayList<String> itemDetailLoop() {
         boolean go = true;
         String command;
@@ -265,6 +305,11 @@ public class GachaGame {
         return null;
     }
 
+    //EFFECTS: start while loop while displaying a question asking what character to show.
+    //         If command = "Back", then stop loop and go back to processInventoryCommand()
+    //         If command = something else, then check it is a character you have. If you do have the character
+    //         then return an arrayList with the character's details, else display that you don't have this character &
+    //         return null
     private ArrayList<String> characterDetailLoop() {
         boolean go = true;
         String command;
@@ -283,6 +328,12 @@ public class GachaGame {
         return null;
     }
 
+    //MODIFIES: this
+    //EFFECTS: 1. Starts a while loop that displays an question asking which character you want to equip items on
+    //         2. Checks if user's input is the name of a character they own. If it is then ask which item to equip,
+    //            else display that they do not have this character and stop loop
+    //         3. Check if user's input is the name of an item they own. If it is, then equip item on character, else
+    //            display error and stop look
     private void equipLoop() {
         boolean go = true;
         String command;
@@ -330,11 +381,10 @@ public class GachaGame {
         return null;
     }
 
-    /*
-     * EFFECTS: While at the inventoryMenu, if command = "Back", then stop loop & return to displayMenu
-     *  If command = anything else, then run processCurrencyCommand(Command) which deals with the behaviors
-     *  of the options
-     */
+    //MODIFIES: this (through processInventoryCommand())
+    //EFFECTS: While at the inventoryMenu, if command = "Back", then stop loop & return to displayMenu
+    // If command = anything else, then run processCurrencyCommand(Command) which deals with the behaviors
+    // of the options
     private void inventoryLoop() {
         boolean go = true;
         String command;

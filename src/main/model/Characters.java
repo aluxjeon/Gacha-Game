@@ -1,5 +1,7 @@
 package model;
 
+//Represents a character that has a name, rarity, if the character holds an item or not, what that item is,
+// and the number of copies of the character
 public class Characters {
     private final int rarity;
     private final String name;
@@ -7,7 +9,9 @@ public class Characters {
     private Item item;
     private int copies;
 
-    // I would want to also take an image for art of character later
+    // EFFECTS: name of character is set to name, rarity of character is set to rarity,
+    // whether the character is held by a character or not is set by equipment, the item the character holds is set
+    // by item the number of copies of the character is set by copies
     public Characters(String name, int rarity, boolean equipment, Item item, int copies) {
         this.name = name;
         this.rarity = rarity;
@@ -47,7 +51,7 @@ public class Characters {
     }
 
     //EFFECTS: If character is holding equipment, print statement of what item character is holding.
-    //Else print "Character is not holding anything"
+    //Else print no equipment
     public String getEquipment() {
         if (checkItem()) {
             return "Equipment: " + item.getName();
@@ -56,6 +60,10 @@ public class Characters {
         }
     }
 
+    //MODIFIES: this.item & item & this.equipment
+    //EFFECTS: if the character doesn't have an item, then changed the character to hold the item & change equipment
+    // status to true. Otherwise, first change the current item the character is holding true to false
+    // and then equip the item and change this new item's status to true
     public void equipItem(Item item) {
         if (!this.checkItem()) {
             this.item = item;
