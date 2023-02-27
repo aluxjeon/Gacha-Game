@@ -33,3 +33,7 @@ collecting characters and items, all of which is data that needs to be saved.
 - As a user, I want to be able to see the specific details of items and characters
 - As a user, I want to be able to see my pity count
 - As a user, I want to be able to add currency and check my current currency
+- As a user, I want to be able to save my character and item inventory
+- As a user, I want to be able to save my current amount of currency and pity
+- As a user, I want to be able to have the option to load my saved inventories, currency, and pity
+
