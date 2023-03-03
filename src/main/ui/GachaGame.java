@@ -337,6 +337,7 @@ public class GachaGame {
     private void equipLoop() {
         boolean go = true;
         String command;
+        String command2;
         while (go) {
             System.out.println("Which Character Do You Want to Equip Items On: \n");
             System.out.println("Back \n");
@@ -344,9 +345,9 @@ public class GachaGame {
             if (myCharacterInventory.contains(findCharacter(command))) {
                 System.out.println("Which Item Do You Want To Equip: \n");
                 System.out.println("Back \n");
-                command = input.next();
-                if (myItemInventory.contains(findItem(command))) {
-                    findCharacter(command).equipItem(findItem(command));
+                command2 = input.next();
+                if (myItemInventory.contains(findItem(command2))) {
+                    findCharacter(command).equipItem(findItem(command2));
                     System.out.println("\n Equipped!");
                 } else {
                     System.out.println("Error");
