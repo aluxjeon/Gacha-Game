@@ -20,7 +20,7 @@ Type: Source Code
 Availability: Provided for Project Phase 2 on Feb-Mar 2023 for CPSC 210.
 */
 
-public class JsonWriterTest extends JsonTest {
+public class JsonWriterTest {
     private ArrayList<Characters> characterList;
     private ArrayList<Item> itemList;
     private Item testItem;
@@ -124,6 +124,8 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    // EFFECTS: Checks to see if the information about character from JSONObject is correct
+    // Character's item is not null
     private void checkCharacters(Characters character,ArrayList<Characters> characters) {
         assertEquals(character.getName(),characters.get(0).getName());
         assertEquals(character.getRarity(),characters.get(0).getRarity());
@@ -134,6 +136,7 @@ public class JsonWriterTest extends JsonTest {
         assertEquals(character.getCopies(),characters.get(0).getCopies());
     }
 
+    // EFFECTS: Checks to see if the information about item from JSONObject is correct
     private void checkItem(Item item, ArrayList<Item> items) {
         assertEquals(item.getName(),items.get(0).getName());
         assertEquals(item.getCopies(),items.get(0).getCopies());
@@ -141,6 +144,8 @@ public class JsonWriterTest extends JsonTest {
         assertEquals(item.status(),items.get(0).status());
     }
 
+    // EFFECTS: Checks to see if the information about character from JSONObject is correct
+    // Character's item is null
     private void checkNullItemCharacters(Characters character,ArrayList<Characters> characters) {
         assertEquals(character.getName(),characters.get(0).getName());
         assertEquals(character.getRarity(),characters.get(0).getRarity());

@@ -59,7 +59,7 @@ public class Item implements Writable {
         return this.equipped;
     }
 
-    //TODO
+    //EFFECTS: Returns a JSONObject with item parameters (eg. name, rarity, copies,..)
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

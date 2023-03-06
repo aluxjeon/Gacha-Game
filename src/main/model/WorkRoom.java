@@ -15,7 +15,7 @@ Type: Source Code
 Availability: Provided for Project Phase 2 on Feb-Mar 2023 for CPSC 210.
 */
 
-// Represents a workroom having a collection of thingies
+// Represents a workroom having a list of characters and items, character & item pity, and currency
 public class WorkRoom implements Writable {
     private String name;
     private int charPity;
@@ -24,45 +24,45 @@ public class WorkRoom implements Writable {
     private List<Characters> characterThingies;
     private List<Item> itemThingies;
 
-    //TODO
-    // EFFECTS: constructs workroom with a name and empty list of characters and items
+    // EFFECTS: constructs workroom with 'name' and empty list of characters and items
     public WorkRoom(String name) {
         this.name = name;
         characterThingies = new ArrayList<>();
         itemThingies = new ArrayList<>();
     }
 
-    //TODO
+    // EFFECTS: Returns name of workroom
     public String getName() {
         return name;
     }
 
-    //TODO
     // MODIFIES: this
     // EFFECTS: adds character to this workroom
     public void addCharacterThingy(Characters character) {
         characterThingies.add(character);
     }
 
-    //TODO
+    // MODIFIES: this
+    // EFFECTS: adds current currency to this workroom
     public void addCurrency(int currency) {
         this.currency = currency;
     }
 
-    //TODO
+    // MODIFIES: this
+    // EFFECTS: adds character and item pity to this workroom
     public void addPity(int characterPity,int itemPity) {
         this.charPity = characterPity;
         this.itemPity = itemPity;
     }
 
-    //TODO
     // MODIFIES: this
     // EFFECTS: adds item to this workroom
     public void addItemThingy(Item item) {
         itemThingies.add(item);
     }
 
-    //TODO
+    //EFFECTS: Returns a JSONObject with workroom name, JSON array of Characters, JSON array of Items,
+    // characterpity, itempity, and currency
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -75,7 +75,6 @@ public class WorkRoom implements Writable {
         return json;
     }
 
-    //TODO
     // EFFECTS: returns characters in this workroom as a JSON array
     private JSONArray thingiesToJson() {
         JSONArray jsonArray = new JSONArray();
@@ -83,11 +82,9 @@ public class WorkRoom implements Writable {
         for (Characters c : characterThingies) {
             jsonArray.put(c.toJson());
         }
-
         return jsonArray;
     }
 
-    //TODO
     // EFFECTS: returns items in this workroom as a JSON array
     private JSONArray itemThingiesToJson() {
         JSONArray jsonArray = new JSONArray();
@@ -95,7 +92,6 @@ public class WorkRoom implements Writable {
         for (Item i : itemThingies) {
             jsonArray.put(i.toJson());
         }
-
         return jsonArray;
     }
 

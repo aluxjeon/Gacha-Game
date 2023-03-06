@@ -201,7 +201,6 @@ public class GachaGame {
         }
     }
 
-    //MODIFIES: this (through processGachaCommand())
     //EFFECTS: starts a loop with the gachaMenu() being displayed. If the user inputs "Back", then break. Else
     // run processGachaCommand with the user's inputs
     private void gachaLoop() {
@@ -252,7 +251,6 @@ public class GachaGame {
         }
     }
 
-    //MODIFIES: this (through processCurrencyCommand())
     //EFFECTS: While at the currencyMenu, if command = "Back", then stop loop & return to displayMenu
     // If command = anything else, then run processCurrencyCommand(Command) which leads to "Check Currency"
     // or "Add Currency" model methods
@@ -283,7 +281,6 @@ public class GachaGame {
         System.out.println("\n Back");
     }
 
-    //MODIFIES: this
     //EFFECTS: If feedBack = "Show All Characters", then display characterGacha.showAllCharacters(), which
     //         should list out all the names of the characters you own
     //         If feedBack = "Show Character Details", then display characterDetailLoop()
@@ -353,7 +350,6 @@ public class GachaGame {
         return null;
     }
 
-    //MODIFIES: this
     //EFFECTS: 1. Starts a while loop that displays an question asking which character you want to equip items on
     //         2. Checks if user's input is the name of a character they own. If it is then ask which item to equip,
     //            else display that they do not have this character and stop loop
@@ -407,7 +403,6 @@ public class GachaGame {
         return null;
     }
 
-    //MODIFIES: this (through processInventoryCommand())
     //EFFECTS: While at the inventoryMenu, if command = "Back", then stop loop & return to displayMenu
     // If command = anything else, then run processCurrencyCommand(Command) which deals with the behaviors
     // of the options
@@ -436,6 +431,9 @@ public class GachaGame {
         System.out.println("\n Back");
     }
 
+    //EFFECTS: While at the saveMenu, if command = "Back", then stop loop & return to displayMenu
+    // If command = anything else, then run processSaveCommand(Command) which deals with the behaviors
+    // of the options
     private void saveLoop() {
         boolean go = true;
         String command;
@@ -452,6 +450,9 @@ public class GachaGame {
         }
     }
 
+    //EFFECTS: 1. If feedBack = 1, then run saveWorkRoom()
+    //         2. If feedBack = 2, then run loadWorkRoom()
+    //         3. Else, print "Invalid input"
     private void processSaveCommand(String feedBack) {
         if (feedBack.equals("1")) {
             saveWorkRoom();
@@ -462,6 +463,11 @@ public class GachaGame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: 1. Run addWorkRoomElement()
+    //         2. Run jsonWriter
+    //         3. Print out where it is saved to
+    // If the file cannot be read, then print error and catch FileNotFoundException
     private void saveWorkRoom() {
         try {
             addWorkRoomElement();
@@ -471,11 +477,14 @@ public class GachaGame {
             System.out.println("Saved " + workRoom.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
-        } catch (NullPointerException e) {
-            System.out.println("There is nothing to save");
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: 1. Read file with jsonReader.read()
+    //         2. Update character pity and item pity and currency
+    //         3. Print out where the JSONObject is loaded from
+    // If the file cannot be read, then print error and catch IOException
     private void loadWorkRoom() {
         try {
             jsonReader.read(myCharacterInventory,myItemInventory);
@@ -485,11 +494,11 @@ public class GachaGame {
             System.out.println("Loaded " + workRoom.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
-        } catch (NullPointerException e) {
-            System.out.println("Nothing is saved");
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: Add each character and item from workroom to character/item inventory
     private void addWorkRoomElement() {
         for (Characters c : myCharacterInventory) {
             workRoom.addCharacterThingy(c);

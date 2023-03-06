@@ -79,9 +79,9 @@ public class Characters implements Writable {
         }
     }
 
-    //REQUIRES: There has to be an item on the character
     //EFFECTS: Returns a JSONObject with character parameters (eg. name, rarity, copies,..)
     // Items are split to item parameters (eg. name, rarity, status,..)
+    // If character has no items, then input baseline stats => will be interpreted as null in reader
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

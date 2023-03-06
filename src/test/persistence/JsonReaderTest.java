@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class JsonReaderTest extends JsonTest {
+public class JsonReaderTest {
     private ArrayList<Characters> characterList;
     private ArrayList<Item> itemList;
     private WorkRoom wr;
@@ -99,6 +99,8 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    // EFFECTS: Checks to see if the information about character from JSONObject is correct
+    // Character's item is not null
     private void checkCharacters(Characters character,ArrayList<Characters> characters) {
         assertEquals(character.getName(),characters.get(0).getName());
         assertEquals(character.getRarity(),characters.get(0).getRarity());
@@ -109,6 +111,8 @@ public class JsonReaderTest extends JsonTest {
         assertEquals(character.getCopies(),characters.get(0).getCopies());
     }
 
+    // EFFECTS: Checks to see if the information about character from JSONObject is correct
+    // Character's item is null
     private void checkNullItemCharacters(Characters character,ArrayList<Characters> characters) {
         assertEquals(character.getName(),characters.get(0).getName());
         assertEquals(character.getRarity(),characters.get(0).getRarity());
@@ -116,6 +120,7 @@ public class JsonReaderTest extends JsonTest {
         assertEquals(character.getCopies(),characters.get(0).getCopies());
     }
 
+    // EFFECTS: Checks to see if the information about item from JSONObject is correct
     private void checkItem(Item item, ArrayList<Item> items) {
         assertEquals(item.getName(),items.get(0).getName());
         assertEquals(item.getCopies(),items.get(0).getCopies());

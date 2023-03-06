@@ -134,6 +134,7 @@ public class CharactersTest extends JsonTest {
     @Test
     void toJsonTest() {
         checkCharacter("Apple",5,true,item1,0,character3.toJson());
+        checkNullItemCharacters(character2,character2.toJson());
     }
 
 }

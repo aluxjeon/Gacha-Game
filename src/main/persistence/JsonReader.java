@@ -2,7 +2,6 @@ package persistence;
 
 import model.Characters;
 import model.Item;
-import model.WorkRoom;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -21,7 +20,6 @@ Type: Source Code
 Availability: Provided for Project Phase 2 on Feb-Mar 2023 for CPSC 210.
 */
 
-//TODO
 // Represents a reader that reads workroom from JSON data stored in file
 public class JsonReader {
     private String source;
@@ -29,23 +27,23 @@ public class JsonReader {
     private int itemPity;
     private int currency;
 
-    //TODO
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
     }
 
-    //TODO
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: needs arraylist inputs for characters and items
+    // Reads workroom from file, then updates arraylist inputs with current characters & items
+    // Also updates character and item pity & currency
     // throws IOException if an error occurs reading data from file
     public void read(ArrayList<Characters> characterList,ArrayList<Item> itemList) throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        parseWorkRoom(jsonObject, characterList, itemList);
+        update(jsonObject, characterList, itemList);
     }
 
-    //TODO
     // EFFECTS: reads source file as string and returns it
+    // throws IOException if an error occurs reading data from file
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -56,9 +54,9 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    //TODO
-    // EFFECTS: parses workroom from JSON object and returns it
-    private void parseWorkRoom(JSONObject jsonObject, ArrayList<Characters> characterList,ArrayList<Item> itemList) {
+    // MODIFIES: this, characterList, itemList
+    // EFFECTS: updates character & item inventory, pities, and currency from JSON object
+    private void update(JSONObject jsonObject, ArrayList<Characters> characterList, ArrayList<Item> itemList) {
         addCharacters(characterList,jsonObject);
         addItems(itemList,jsonObject);
         updateCharacterPity(jsonObject);
@@ -66,7 +64,8 @@ public class JsonReader {
         updateCurrency(jsonObject);
     }
 
-    //TODO
+    // MODIFIES: characterList
+    // EFFECTS: updates character inventory by adding each character into the inventory
     private void addCharacters(ArrayList<Characters> characterList, JSONObject jsonObject) {
         JSONArray jsonArray1 = jsonObject.getJSONArray("Characters");
         for (Object json : jsonArray1) {
@@ -75,7 +74,8 @@ public class JsonReader {
         }
     }
 
-    //TODO
+    // MODIFIES: itemList
+    // EFFECTS: updates item inventory by adding each item into the inventory
     private void addItems(ArrayList<Item> itemList, JSONObject jsonObject) {
         JSONArray jsonArray2 = jsonObject.getJSONArray("Items");
         for (Object json : jsonArray2) {
@@ -84,39 +84,43 @@ public class JsonReader {
         }
     }
 
-    //TODO
+    // EFFECTS: Returns character pity
     public int getCharacterPity() {
         return characterPity;
     }
 
-    //TODO
+    // EFFECTS: Returns item pity
     public int getItemPity() {
         return itemPity;
     }
 
-    //TODO
+    // EFFECTS: Returns currency
     public int getCurrency() {
         return currency;
     }
 
-    //TODO
+    // MODIFIES: this
+    // EFFECTS: Updates character pity with value from JSONObject
     private void updateCharacterPity(JSONObject jsonObject) {
         this.characterPity = jsonObject.getInt("Character Pity");
     }
 
-    //TODO
+    // MODIFIES: this
+    // EFFECTS: Updates item pity with value from JSONObject
     private void updateItemPity(JSONObject jsonObject) {
         this.itemPity = jsonObject.getInt("Item Pity");
     }
 
-    //TODO
+    // MODIFIES: this
+    // EFFECTS: Updates currency with value from JSONObject
     private void updateCurrency(JSONObject jsonObject) {
         this.currency = jsonObject.getInt("Currency");
     }
 
-    //TODO
     // MODIFIES: characterList
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: gets information from each character and makes a new character object.
+    // Then the character object is instantiated with the info and added to characterList
+    // If the character's item's rarity is 0, then just make a new item that is null
     private void addCharacter(ArrayList<Characters> characterList, JSONObject jsonObject) {
         Item item;
         String name = jsonObject.getString("name");
@@ -136,9 +140,9 @@ public class JsonReader {
         characterList.add(character);
     }
 
-    //TODO
     // MODIFIES: itemList
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: gets information from each item and makes a new item object.
+    // Then the item object is instantiated with the info and added to itemList
     private void addItem(ArrayList<Item> itemList, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int rarity = jsonObject.getInt("rarity");
