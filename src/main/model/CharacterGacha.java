@@ -51,6 +51,10 @@ public class CharacterGacha implements Collectible {
         return this.characterList;
     }
 
+    public void addPity(int amount) {
+        this.characterPity += amount;
+    }
+
     //MODIFIES: this
     //EFFECTS: 1. Randomly produces an int between 0 ~ 999, 0 ~ 4, and 0 ~ 4.
     //         2. Adds one to character pity

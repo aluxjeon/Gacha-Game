@@ -17,6 +17,10 @@ public class ItemGacha implements Collectible {
         this.itemList = itemList;
     }
 
+    public void addPity(int amount) {
+        this.itemPity += amount;
+    }
+
     //EFFECTS: Returns the list of possible 4* items you can pull for
     public ArrayList<Item> getFourStarItemRoster() {
         return this.fourStarItemRoster;

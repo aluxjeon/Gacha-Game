@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Represents a character that has a name, rarity, if the character holds an item or not, what that item is,
 // and the number of copies of the character
-public class Characters {
+public class Characters implements Writable {
     private final int rarity;
     private final String name;
     private boolean equipment;
@@ -74,5 +77,19 @@ public class Characters {
             this.item = item;
             item.equip();
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("rarity",rarity);
+        json.put("equipment", equipment);
+        json.put("item name",item.getName());
+        json.put("item rarity",item.getRarity());
+        json.put("item status",item.status());
+        json.put("item copies",item.getCopies());
+        json.put("copies",copies);
+        return json;
     }
 }

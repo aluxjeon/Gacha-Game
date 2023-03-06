@@ -1,8 +1,11 @@
 package model;
 
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Represents an item that has a name, rarity, if it being held or not, and the number of copies
-public class Item {
+public class Item implements Writable {
     private final String name;
     private final int rarity;
     private boolean equipped;
@@ -54,5 +57,15 @@ public class Item {
     //EFFECTS: Returns whether the item is equipped or not with a boolean
     public boolean status() {
         return this.equipped;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("rarity",rarity);
+        json.put("equipped", equipped);
+        json.put("copies",copies);
+        return json;
     }
 }

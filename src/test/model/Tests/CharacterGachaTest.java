@@ -1,5 +1,8 @@
-package model;
+package model.Tests;
 
+import model.CharacterGacha;
+import model.Characters;
+import model.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

@@ -4,6 +4,12 @@ import model.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.WorkRoom;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class GachaGame {
     private Scanner input;
@@ -13,7 +19,10 @@ public class GachaGame {
     private final Currency myCurrency = new Currency();
     private final CharacterGacha characterGacha = new CharacterGacha(myCharacterInventory);
     private final ItemGacha itemGacha = new ItemGacha(myItemInventory);
-
+    private static final String JSON_STORE = "./data/workroom.json";
+    private WorkRoom workRoom;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     public GachaGame() {
         runGachaGame();
@@ -32,6 +41,9 @@ public class GachaGame {
         initializeCharacters();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        workRoom = new WorkRoom("Alex's workroom");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         while (go) {
             displayMenu();
@@ -113,6 +125,7 @@ public class GachaGame {
         System.out.println("\n Gacha");
         System.out.println("\n Inventory");
         System.out.println("\n Currency");
+        System.out.println("\n Save");
         System.out.println("\n Quit");
     }
 
@@ -125,6 +138,8 @@ public class GachaGame {
             inventoryLoop();
         } else if (feedback.equals("Currency")) {
             currencyLoop();
+        } else if (feedback.equals("Save")) {
+            saveLoop();
         }
     }
 
@@ -401,4 +416,80 @@ public class GachaGame {
             }
         }
     }
+
+    // =======================================================================================
+    // EFFECTS: Display Save Menu
+    private void saveMenu() {
+        System.out.println("\n Select From:");
+        System.out.println("\n 1) Save");
+        System.out.println("\n 2) Load");
+        System.out.println("\n Back");
+    }
+
+    private void saveLoop() {
+        boolean go = true;
+        String command;
+
+        while (go) {
+            saveMenu();
+            command = input.next();
+
+            if (command.equals("Back")) {
+                go = false;
+            } else {
+                processSaveCommand(command);
+            }
+        }
+    }
+
+    private void processSaveCommand(String feedBack) {
+        if (feedBack.equals("1")) {
+            saveWorkRoom();
+        } else if (feedBack.equals("2"))  {
+            loadWorkRoom();
+        } else {
+            System.out.println("Invalid input");
+        }
+    }
+
+    private void saveWorkRoom() {
+        try {
+            addWorkRoomElement();
+            jsonWriter.open();
+            jsonWriter.write(workRoom);
+            jsonWriter.close();
+            System.out.println("Saved " + workRoom.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        } catch (NullPointerException e) {
+            System.out.println("There is nothing to save");
+        }
+    }
+
+    private void loadWorkRoom() {
+        try {
+            jsonReader.read(myCharacterInventory,myItemInventory);
+            characterGacha.addPity(jsonReader.getCharacterPity());
+            itemGacha.addPity(jsonReader.getItemPity());
+            myCurrency.addCurrency(jsonReader.getCurrency());
+            System.out.println("Loaded " + workRoom.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        } catch (NullPointerException e) {
+            System.out.println("Nothing is saved");
+        }
+    }
+
+    private void addWorkRoomElement() {
+        for (Characters c : myCharacterInventory) {
+            workRoom.addThingy(c);
+        }
+        for (Item i : myItemInventory) {
+            workRoom.addItemThingy(i);
+        }
+        workRoom.addCurrency(myCurrency.getCurrency());
+        workRoom.addPity(characterGacha.getPity(), itemGacha.getPity());
+    }
+
+
 }
