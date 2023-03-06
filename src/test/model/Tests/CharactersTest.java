@@ -2,11 +2,14 @@ package model.Tests;
 
 import model.Characters;
 import model.Item;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistence.JsonTest;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CharactersTest {
+public class CharactersTest extends JsonTest {
     Characters character2;
     Characters character3;
     Item item1;
@@ -127,4 +130,11 @@ public class CharactersTest {
         assertTrue(bow.status());
         assertTrue(character2.checkItem());
     }
+
+    @Test
+    void toJsonTest() {
+        checkCharacter("Apple",5,true,item1,0,character3.toJson());
+    }
+
 }
+

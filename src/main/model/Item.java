@@ -59,6 +59,7 @@ public class Item implements Writable {
         return this.equipped;
     }
 
+    //TODO
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

@@ -13,6 +13,15 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
+/*
+Title: JsonSerializationDemo - WorkRoomApp.java
+Author: Meghan Allen & Steve Wolfman [UBC]
+Date: 6 March 2023
+Type: Source Code
+Availability: Provided for Project Phase 2 on Feb-Mar 2023 for CPSC 210.
+*/
+
+    //TODO
 // Represents a reader that reads workroom from JSON data stored in file
 public class JsonReader {
     private String source;
@@ -20,11 +29,13 @@ public class JsonReader {
     private int itemPity;
     private int currency;
 
+    //TODO
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
     }
 
+    //TODO
     // EFFECTS: reads workroom from file and returns it;
     // throws IOException if an error occurs reading data from file
     public void read(ArrayList<Characters> characterList,ArrayList<Item> itemList) throws IOException {
@@ -33,6 +44,7 @@ public class JsonReader {
         parseWorkRoom(jsonObject, characterList, itemList);
     }
 
+    //TODO
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
@@ -44,6 +56,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
+    //TODO
     // EFFECTS: parses workroom from JSON object and returns it
     private void parseWorkRoom(JSONObject jsonObject, ArrayList<Characters> characterList,ArrayList<Item> itemList) {
         addCharacters(characterList,jsonObject);
@@ -53,6 +66,7 @@ public class JsonReader {
         updateCurrency(jsonObject);
     }
 
+    //TODO
     private void addCharacters(ArrayList<Characters> characterList, JSONObject jsonObject) {
         JSONArray jsonArray1 = jsonObject.getJSONArray("Characters");
         for (Object json : jsonArray1) {
@@ -61,6 +75,7 @@ public class JsonReader {
         }
     }
 
+    //TODO
     private void addItems(ArrayList<Item> itemList, JSONObject jsonObject) {
         JSONArray jsonArray2 = jsonObject.getJSONArray("Items");
         for (Object json : jsonArray2) {
@@ -69,30 +84,37 @@ public class JsonReader {
         }
     }
 
+    //TODO
     public int getCharacterPity() {
         return characterPity;
     }
 
+    //TODO
     public int getItemPity() {
         return itemPity;
     }
 
+    //TODO
     public int getCurrency() {
         return currency;
     }
 
+    //TODO
     private void updateCharacterPity(JSONObject jsonObject) {
         this.characterPity = jsonObject.getInt("Character Pity");
     }
 
+    //TODO
     private void updateItemPity(JSONObject jsonObject) {
         this.itemPity = jsonObject.getInt("Item Pity");
     }
 
+    //TODO
     private void updateCurrency(JSONObject jsonObject) {
         this.currency = jsonObject.getInt("Currency");
     }
 
+    //TODO
     // MODIFIES: characterList
     // EFFECTS: parses thingy from JSON object and adds it to workroom
     private void addCharacter(ArrayList<Characters> characterList, JSONObject jsonObject) {
@@ -109,7 +131,7 @@ public class JsonReader {
         characterList.add(character);
     }
 
-
+    //TODO
     // MODIFIES: itemList
     // EFFECTS: parses thingy from JSON object and adds it to workroom
     private void addItem(ArrayList<Item> itemList, JSONObject jsonObject) {

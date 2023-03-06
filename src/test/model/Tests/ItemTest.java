@@ -3,9 +3,11 @@ package model.Tests;
 import model.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistence.JsonTest;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ItemTest {
+public class ItemTest extends JsonTest {
     Item item1;
     Item item2;
 
@@ -63,5 +65,10 @@ public class ItemTest {
     void statusTest() {
         assertFalse(item1.status());
         assertTrue(item2.status());
+    }
+
+    @Test
+    void toJsonTest() {
+        checkItem("Bow",4,true,1,item2.toJson());
     }
 }

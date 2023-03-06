@@ -11,6 +11,16 @@ import persistence.JsonWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+
+/*
+Title: JsonSerializationDemo - WorkRoomApp.java
+Author: Meghan Allen & Steve Wolfman [UBC]
+Date: 6 March 2023
+Type: Source Code
+Availability: Provided for Project Phase 2 on Feb-Mar 2023 for CPSC 210.
+*/
+// void saveWorkRoom(), void loadWorkRoom(), void addWorkRoomElement()
+
 public class GachaGame {
     private Scanner input;
     private final Item baseSword = new Item("Poop Sword",3,true,0);
@@ -482,7 +492,7 @@ public class GachaGame {
 
     private void addWorkRoomElement() {
         for (Characters c : myCharacterInventory) {
-            workRoom.addThingy(c);
+            workRoom.addCharacterThingy(c);
         }
         for (Item i : myItemInventory) {
             workRoom.addItemThingy(i);
