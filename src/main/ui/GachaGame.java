@@ -58,7 +58,7 @@ public class GachaGame {
         while (go) {
             displayMenu();
             command = input.next();
-            if (command.equals("Quit")) {
+            if (command.equals("5")) {
                 go = false;
             } else {
                 processCommand(command);
@@ -132,23 +132,23 @@ public class GachaGame {
     // EFFECTS: Display menu of options to user
     private void displayMenu() {
         System.out.println("\n Select From:");
-        System.out.println("\n Gacha");
-        System.out.println("\n Inventory");
-        System.out.println("\n Currency");
-        System.out.println("\n Save");
-        System.out.println("\n Quit");
+        System.out.println("\n 1) Gacha");
+        System.out.println("\n 2) Inventory");
+        System.out.println("\n 3) Currency");
+        System.out.println("\n 4) Save");
+        System.out.println("\n 5) Quit");
     }
 
     // EFFECTS: If the user inputs "Gacha", then run gachaLoop(), if the user inputs Inventory, then run
     // inventoryLoop(), if the user inputs Currency, then run currencyLoop()
     private void processCommand(String feedback) {
-        if (feedback.equals("Gacha")) {
+        if (feedback.equals("1")) {
             gachaLoop();
-        } else if (feedback.equals("Inventory")) {
+        } else if (feedback.equals("2")) {
             inventoryLoop();
-        } else if (feedback.equals("Currency")) {
+        } else if (feedback.equals("3")) {
             currencyLoop();
-        } else if (feedback.equals("Save")) {
+        } else if (feedback.equals("4")) {
             saveLoop();
         }
     }
@@ -157,11 +157,11 @@ public class GachaGame {
     // EFFECTS: Display Gacha Menu with options regarding pulling
     private void gachaMenu() {
         System.out.println("\n Select From:");
-        System.out.println("\n Pull Character");
-        System.out.println("\n 10-Pull Character");
-        System.out.println("\n Pull Item");
-        System.out.println("\n 10-Pull Item");
-        System.out.println("\n Show Pity");
+        System.out.println("\n 1) Pull Character");
+        System.out.println("\n 2) 10-Pull Character");
+        System.out.println("\n 3) Pull Item");
+        System.out.println("\n 4) 10-Pull Item");
+        System.out.println("\n 5) Show Pity");
         System.out.println("\n Back");
     }
 
@@ -177,23 +177,23 @@ public class GachaGame {
     //         If feedBack = "Show Pity", then display the character and item pity
     //         Else, display error
     private void processGachaCommand(String feedBack) {
-        if (feedBack.equals("Pull Character") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
+        if (feedBack.equals("1") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
             characterGacha.pull();
             myCurrency.subCurrency(100);
             System.out.println("Pulled!");
-        } else if (feedBack.equals("10-Pull Character") && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
+        } else if (feedBack.equals("2") && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
             characterGacha.tenPull();
             myCurrency.subCurrency(1000);
             System.out.println("10-Pulled!");
-        } else if (feedBack.equals("Pull Item") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
+        } else if (feedBack.equals("3") && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
             itemGacha.pull();
             myCurrency.subCurrency(100);
             System.out.println("Pulled!");
-        } else if (feedBack.equals("10-Pull Item") && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
+        } else if (feedBack.equals("4") && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
             itemGacha.tenPull();
             myCurrency.subCurrency(1000);
             System.out.println("10-Pulled!");
-        } else if (feedBack.equals("Show Pity")) {
+        } else if (feedBack.equals("5")) {
             System.out.println("\n Character Pity: " + characterGacha.getPity());
             System.out.println("\n Item Pity: " + itemGacha.getPity());
         } else {
@@ -223,8 +223,8 @@ public class GachaGame {
     // EFFECTS: Display Currency Menu
     private void currencyMenu() {
         System.out.println("\n Select From:");
-        System.out.println("\n Check Currency");
-        System.out.println("\n Add Currency");
+        System.out.println("\n 1) Check Currency");
+        System.out.println("\n 2) Add Currency");
         System.out.println("\n Back");
     }
 
@@ -236,9 +236,9 @@ public class GachaGame {
     private void processCurrencyCommand(String feedBack) {
         boolean go = true;
         int amount;
-        if (feedBack.equals("Check Currency")) {
-            System.out.println(myCurrency.getCurrency());
-        } else if (feedBack.equals("Add Currency")) {
+        if (feedBack.equals("1")) {
+            System.out.println("Currency: " + myCurrency.getCurrency());
+        } else if (feedBack.equals("2")) {
             while (go) {
                 System.out.println("\n Insert Number of Currency To Add:");
                 System.out.println("\n It Takes 100 for a pull!");
@@ -273,11 +273,11 @@ public class GachaGame {
     // EFFECTS: Display Inventory Menu
     private void inventoryMenu() {
         System.out.println("\n Select From:");
-        System.out.println("\n Show All Characters");
-        System.out.println("\n Show Character Details");
-        System.out.println("\n Show All Items");
-        System.out.println("\n Show Item Details");
-        System.out.println("\n Equip Items");
+        System.out.println("\n 1) Show All Characters");
+        System.out.println("\n 2) Show Character Details");
+        System.out.println("\n 3) Show All Items");
+        System.out.println("\n 4) Show Item Details");
+        System.out.println("\n 5) Equip Items");
         System.out.println("\n Back");
     }
 
@@ -291,15 +291,15 @@ public class GachaGame {
     private void processInventoryCommand(String feedBack) {
         String itemName = "";
 
-        if (feedBack.equals("Show All Characters")) {
+        if (feedBack.equals("1")) {
             System.out.println(characterGacha.showAllCharacters());
-        } else if (feedBack.equals("Show Character Details")) {
+        } else if (feedBack.equals("2")) {
             System.out.println(characterDetailLoop());
-        } else if (feedBack.equals("Show All Items")) {
+        } else if (feedBack.equals("3")) {
             System.out.println(itemGacha.showAllItems());
-        } else if (feedBack.equals("Show Item Details")) {
+        } else if (feedBack.equals("4")) {
             System.out.println(itemDetailLoop());
-        } else if (feedBack.equals("Equip Items")) {
+        } else if (feedBack.equals("5")) {
             equipLoop();
         }
     }
