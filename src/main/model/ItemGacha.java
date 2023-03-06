@@ -17,10 +17,6 @@ public class ItemGacha implements Collectible {
         this.itemList = itemList;
     }
 
-    public void addPity(int amount) {
-        this.itemPity += amount;
-    }
-
     //EFFECTS: Returns the list of possible 4* items you can pull for
     public ArrayList<Item> getFourStarItemRoster() {
         return this.fourStarItemRoster;
@@ -29,15 +25,6 @@ public class ItemGacha implements Collectible {
     //EFFECTS: Returns the list of possible 5* items you can pull for
     public ArrayList<Item> getFiveStarItemRoster() {
         return this.fiveStarItemRoster;
-    }
-
-    public ArrayList<Item> getItemList() {
-        return this.itemList;
-    }
-
-    //EFFECTS: Returns the item pity
-    public int getPity() {
-        return itemPity;
     }
 
     //MODIFIES: this
@@ -50,6 +37,23 @@ public class ItemGacha implements Collectible {
     // EFFECTS: Add 5* item into roster for pulls
     public void addFiveStarItemRoster(Item item) {
         fiveStarItemRoster.add(item);
+    }
+
+    //EFFECTS: Return the current item list of items you own
+    public ArrayList<Item> getItemList() {
+        return this.itemList;
+    }
+
+    //EFFECTS: Returns the item pity
+    public int getPity() {
+        return itemPity;
+    }
+
+    //REQUIRES: amount >= 0
+    //MODIFIES: this
+    //EFFECTS: Adds amount to pity
+    public void addPity(int amount) {
+        this.itemPity += amount;
     }
 
     //MODIFIES: this

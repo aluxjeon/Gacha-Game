@@ -21,7 +21,7 @@ Type: Source Code
 Availability: Provided for Project Phase 2 on Feb-Mar 2023 for CPSC 210.
 */
 
-    //TODO
+//TODO
 // Represents a reader that reads workroom from JSON data stored in file
 public class JsonReader {
     private String source;
@@ -118,6 +118,7 @@ public class JsonReader {
     // MODIFIES: characterList
     // EFFECTS: parses thingy from JSON object and adds it to workroom
     private void addCharacter(ArrayList<Characters> characterList, JSONObject jsonObject) {
+        Item item;
         String name = jsonObject.getString("name");
         int rarity = jsonObject.getInt("rarity");
         boolean equipment = jsonObject.getBoolean("equipment");
@@ -126,7 +127,11 @@ public class JsonReader {
         int itemRarity = jsonObject.getInt("item rarity");
         boolean itemStatus = jsonObject.getBoolean("item status");
         int itemCopies = jsonObject.getInt("item copies");
-        Item item = new Item(itemName,itemRarity,itemStatus,itemCopies);
+        if (itemRarity == 0) {
+            item = null;
+        } else {
+            item = new Item(itemName,itemRarity,itemStatus,itemCopies);
+        }
         Characters character = new Characters(name,rarity,equipment,item,copies);
         characterList.add(character);
     }

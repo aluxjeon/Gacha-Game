@@ -25,11 +25,13 @@ public class JsonWriterTest extends JsonTest {
     private ArrayList<Item> itemList;
     private Item testItem;
     private Characters testCharacter;
+    private Characters testCharacter2;
 
     @BeforeEach
     void runBefore() {
         testItem = new Item("Sword",5,true,0);
         testCharacter = new Characters("Alex",5,true,testItem,0);
+        testCharacter2 = new Characters("Bob", 4, false,null,2);
         itemList = new ArrayList<>();
         characterList = new ArrayList<>();
     }
@@ -95,6 +97,33 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    @Test
+    void testWriterCharacterItemNullWorkroom() {
+        try {
+            WorkRoom wr = new WorkRoom("My work room");
+            wr.addCharacterThingy(testCharacter2);
+            wr.addItemThingy(testItem);
+            wr.addPity(10,20);
+            wr.addCurrency(1000);
+            JsonWriter writer = new JsonWriter("./data/testWriterCharacterItemNullWorkroom.json");
+            writer.open();
+            writer.write(wr);
+            writer.close();
+            JsonReader reader = new JsonReader("./data/testWriterCharacterItemNullWorkroom.json");
+            reader.read(characterList,itemList);
+            assertEquals("My work room", wr.getName());
+            assertEquals(1,characterList.size());
+            checkNullItemCharacters(testCharacter2,characterList);
+            assertEquals(1,itemList.size());
+            checkItem(testItem,itemList);
+            assertEquals(1000,reader.getCurrency());
+            assertEquals(10,reader.getCharacterPity());
+            assertEquals(20,reader.getItemPity());
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
+
     private void checkCharacters(Characters character,ArrayList<Characters> characters) {
         assertEquals(character.getName(),characters.get(0).getName());
         assertEquals(character.getRarity(),characters.get(0).getRarity());
@@ -110,6 +139,13 @@ public class JsonWriterTest extends JsonTest {
         assertEquals(item.getCopies(),items.get(0).getCopies());
         assertEquals(item.getRarity(),items.get(0).getRarity());
         assertEquals(item.status(),items.get(0).status());
+    }
+
+    private void checkNullItemCharacters(Characters character,ArrayList<Characters> characters) {
+        assertEquals(character.getName(),characters.get(0).getName());
+        assertEquals(character.getRarity(),characters.get(0).getRarity());
+        assertNull(characters.get(0).getItem());
+        assertEquals(character.getCopies(),characters.get(0).getCopies());
     }
 
 }

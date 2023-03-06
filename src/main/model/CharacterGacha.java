@@ -24,6 +24,13 @@ public class CharacterGacha implements Collectible {
         return this.characterPity;
     }
 
+    //REQUIRES: amount >= 0
+    //MODIFIES: this
+    //EFFECTS: Adds amount to pity
+    public void addPity(int amount) {
+        this.characterPity += amount;
+    }
+
     //MODIFIES: this
     //EFFECTS: Adds 4* character into roster for pulls
     public void addFourStarCharacterRoster(Characters characters) {
@@ -49,10 +56,6 @@ public class CharacterGacha implements Collectible {
     //EFFECTS: Returns the list of characters you own
     public ArrayList<Characters> getCharacterList() {
         return this.characterList;
-    }
-
-    public void addPity(int amount) {
-        this.characterPity += amount;
     }
 
     //MODIFIES: this

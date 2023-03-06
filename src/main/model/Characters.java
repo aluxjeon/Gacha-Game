@@ -23,16 +23,6 @@ public class Characters implements Writable {
         this.copies = copies;
     }
 
-    //EFFECTS: Returns true if character holds item. Else return false
-    public Boolean checkItem() {
-        return this.equipment;
-    }
-
-    //EFFECTS: Returns Item if character holds item (checkItem() == true), Else return null
-    public Item getItem() {
-        return this.item;
-    }
-
     //EFFECTS: Return name of character
     public String getName() {
         return this.name;
@@ -63,6 +53,16 @@ public class Characters implements Writable {
         }
     }
 
+    //EFFECTS: Returns Item if character holds item (checkItem() == true), Else return null
+    public Item getItem() {
+        return this.item;
+    }
+
+    //EFFECTS: Returns true if character holds item. Else return false
+    public Boolean checkItem() {
+        return this.equipment;
+    }
+
     //MODIFIES: this.item & item & this.equipment
     //EFFECTS: if the character doesn't have an item, then changed the character to hold the item & change equipment
     // status to true. Otherwise, first change the current item the character is holding true to false
@@ -79,17 +79,26 @@ public class Characters implements Writable {
         }
     }
 
-    //TODO
+    //REQUIRES: There has to be an item on the character
+    //EFFECTS: Returns a JSONObject with character parameters (eg. name, rarity, copies,..)
+    // Items are split to item parameters (eg. name, rarity, status,..)
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
         json.put("rarity",rarity);
         json.put("equipment", equipment);
-        json.put("item name",item.getName());
-        json.put("item rarity",item.getRarity());
-        json.put("item status",item.status());
-        json.put("item copies",item.getCopies());
+        if (item == null) {
+            json.put("item name", "");
+            json.put("item rarity",0);
+            json.put("item status",false);
+            json.put("item copies",0);
+        } else {
+            json.put("item name",item.getName());
+            json.put("item rarity",item.getRarity());
+            json.put("item status",item.status());
+            json.put("item copies",item.getCopies());
+        }
         json.put("copies",copies);
         return json;
     }
