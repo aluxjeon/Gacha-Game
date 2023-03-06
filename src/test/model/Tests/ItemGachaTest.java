@@ -270,6 +270,14 @@ public class ItemGachaTest {
         assertEquals(nullList, itemGacha.showItemDetails("Bow"));
     }
 
+    @Test
+    void addPityTest() {
+        itemGacha.addPity(10);
+        assertEquals(10,itemGacha.getPity());
+        itemGacha.addPity(20);
+        assertEquals(30,itemGacha.getPity());
+    }
+
     private void initialize() {
         itemGacha.addFiveStarItemRoster(item1);
         itemGacha.addFiveStarItemRoster(item2);

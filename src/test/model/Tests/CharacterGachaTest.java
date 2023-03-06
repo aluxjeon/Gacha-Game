@@ -176,6 +176,7 @@ public class CharacterGachaTest {
         for (Characters c : myCharacters) {
             if (c.getCopies() == 1) {
                 b = true;
+                break;
             }
         }
         assertTrue(b);
@@ -271,6 +272,14 @@ public class CharacterGachaTest {
     void showNoCharacterDetailsTest() {
         ArrayList<String> nullList = new ArrayList<>();
         assertEquals(nullList,characterGacha.showCharacterDetails("Charlie"));
+    }
+
+    @Test
+    void addPityTest() {
+        characterGacha.addPity(10);
+        assertEquals(10,characterGacha.getPity());
+        characterGacha.addPity(20);
+        assertEquals(30,characterGacha.getPity());
     }
 
     private void initialize() {
