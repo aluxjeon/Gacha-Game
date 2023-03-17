@@ -162,7 +162,7 @@ public class GachaGame {
         System.out.println("\n 3) Pull Item");
         System.out.println("\n 4) 10-Pull Item");
         System.out.println("\n 5) Show Pity");
-        System.out.println("\n Back");
+        System.out.println("\n 6) Back");
     }
 
     //MODIFIES: this
@@ -211,7 +211,7 @@ public class GachaGame {
             gachaMenu();
             command = input.next();
 
-            if (command.equals("Back")) {
+            if (command.equals("6")) {
                 go = false;
             } else {
                 processGachaCommand(command);
@@ -225,7 +225,7 @@ public class GachaGame {
         System.out.println("\n Select From:");
         System.out.println("\n 1) Check Currency");
         System.out.println("\n 2) Add Currency");
-        System.out.println("\n Back");
+        System.out.println("\n 3) Back");
     }
 
     //REQUIRES: amount >= 0
@@ -261,7 +261,7 @@ public class GachaGame {
         while (go) {
             currencyMenu();
             command = input.next();
-            if (command.equals("Back")) {
+            if (command.equals("3")) {
                 go = false;
             } else {
                 processCurrencyCommand(command);
@@ -278,7 +278,7 @@ public class GachaGame {
         System.out.println("\n 3) Show All Items");
         System.out.println("\n 4) Show Item Details");
         System.out.println("\n 5) Equip Items");
-        System.out.println("\n Back");
+        System.out.println("\n 6) Back");
     }
 
     //EFFECTS: If feedBack = "Show All Characters", then display characterGacha.showAllCharacters(), which
@@ -314,11 +314,11 @@ public class GachaGame {
         String command;
         while (go) {
             System.out.println("Insert name of the Item you want to see: \n");
-            System.out.println("Back \n");
+            System.out.println("2) Back \n");
             command = input.next();
             if (myItemInventory.contains(findItem(command))) {
                 return itemGacha.showItemDetails(command);
-            } else if (command.equals("Back")) {
+            } else if (command.equals("2")) {
                 go = false;
             } else {
                 System.out.println("You don't have this item");
@@ -337,11 +337,11 @@ public class GachaGame {
         String command;
         while (go) {
             System.out.println("Insert name of the Character you want to see: \n");
-            System.out.println("Back \n");
+            System.out.println("2) Back \n");
             command = input.next();
             if (myCharacterInventory.contains(findCharacter(command))) {
                 return characterGacha.showCharacterDetails(command);
-            } else if (command.equals("Back")) {
+            } else if (command.equals("2")) {
                 go = false;
             } else {
                 System.out.println("You don't have this character");
@@ -361,11 +361,11 @@ public class GachaGame {
         String command2;
         while (go) {
             System.out.println("Which Character Do You Want to Equip Items On: \n");
-            System.out.println("Back \n");
+            System.out.println("2) Back \n");
             command = input.next();
             if (myCharacterInventory.contains(findCharacter(command))) {
                 System.out.println("Which Item Do You Want To Equip: \n");
-                System.out.println("Back \n");
+                System.out.println("2) Back \n");
                 command2 = input.next();
                 if (myItemInventory.contains(findItem(command2))) {
                     findCharacter(command).equipItem(findItem(command2));
@@ -373,7 +373,7 @@ public class GachaGame {
                 } else {
                     System.out.println("Error");
                 }
-            } else if (command.equals("Back")) {
+            } else if (command.equals("2")) {
                 go = false;
             } else {
                 System.out.println("You don't have this character");
@@ -414,7 +414,7 @@ public class GachaGame {
             inventoryMenu();
             command = input.next();
 
-            if (command.equals("Back")) {
+            if (command.equals("6")) {
                 go = false;
             } else {
                 processInventoryCommand(command);
@@ -428,7 +428,7 @@ public class GachaGame {
         System.out.println("\n Select From:");
         System.out.println("\n 1) Save");
         System.out.println("\n 2) Load");
-        System.out.println("\n Back");
+        System.out.println("\n 3) Back");
     }
 
     //EFFECTS: While at the saveMenu, if command = "Back", then stop loop & return to displayMenu
@@ -442,7 +442,7 @@ public class GachaGame {
             saveMenu();
             command = input.next();
 
-            if (command.equals("Back")) {
+            if (command.equals("3")) {
                 go = false;
             } else {
                 processSaveCommand(command);
