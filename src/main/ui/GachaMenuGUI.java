@@ -24,8 +24,8 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
     private JPanel currencyPanel;
     private Boolean visibility = false;
     private final JButton currencyIncreaseButton = new JButton();
-    private final JPanel characterBannerPanel = new JPanel();
-    private final JPanel itemBannerPanel = new JPanel();
+    private final JLabel characterBannerLabel = new JLabel();
+    private final JLabel itemBannerLabel = new JLabel();
     private final JPanel pullPanel = new JPanel();
     private final JButton closeButton = new JButton();
     private final JLabel pullLabel = new JLabel();
@@ -65,12 +65,12 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
 
         for (Item i : this.itemGacha.getFiveStarItemRoster()) {
             ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/"
-                    + i.getName() + ".png");
+                    + i.getName() + "M.png");
             itemPortraits.put(i.getName(),icon);
         }
         for (Item i : this.itemGacha.getFourStarItemRoster()) {
             ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/"
-                    + i.getName() + ".png");
+                    + i.getName() + "M.png");
             itemPortraits.put(i.getName(),icon);
         }
     }
@@ -101,8 +101,8 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
         tenPullButton();
         pityButton();
         currencyButton();
-        characterBannerPanel();
-        itemBannerPanel();
+        characterBannerLabel();
+        itemBannerLabel();
         characterBannerButton();
         itemBannerButton();
         pillarPanel();
@@ -135,7 +135,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
         pullLabel.setBounds(250,0,100,100);
         pullPanel.setLayout(null);
         pullPanel.setBounds(0,125,600,100);
-        pullPanel.setBackground(Color.gray);
+        pullPanel.setBackground(Color.lightGray);
         pullPanel.setVisible(false);
         pullPanel.add(pullLabel);
         pullPanel.add(closeButton);
@@ -177,13 +177,14 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
 
         currencyPanel = new JPanel();
         currencyPanel.setBounds(380,30,50,25);
-        currencyPanel.setBackground(Color.black);
+        currencyPanel.setBackground(Color.lightGray);
         currencyPanel.setOpaque(true);
         currencyPanel.setVisible(false);
         currencyPanel.setLayout(null);
         this.add(currencyPanel);
 
         currencyIncreaseButton.setBounds(12,0,26,25);
+        currencyIncreaseButton.setText("+");
         currencyIncreaseButton.setBackground(Color.yellow);
         currencyIncreaseButton.setOpaque(true);
         currencyIncreaseButton.addActionListener(this);
@@ -194,15 +195,16 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
     private void pillarPanel() {
         JPanel pillarPanel = new JPanel();
         pillarPanel.setBounds(490,0,50,400);
-        pillarPanel.setBackground(Color.gray);
+        pillarPanel.setBackground(Color.lightGray);
         this.add(pillarPanel);
     }
 
     private void characterBannerButton() {
         characterBannerButton = new JButton();
         characterBannerButton.setBounds(465,100,100,75);
-        characterBannerButton.setBackground(Color.yellow);
-        characterBannerButton.setOpaque(true);
+        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/CharacterBannerButton.png");
+        characterBannerButton.setIcon(icon);
+        characterBannerButton.setBorder(BorderFactory.createLineBorder(Color.black));
         characterBannerButton.addActionListener(this);
         this.add(characterBannerButton);
     }
@@ -210,35 +212,40 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
     private void itemBannerButton() {
         itemBannerButton = new JButton();
         itemBannerButton.setBounds(465,200,100,75);
-        itemBannerButton.setBackground(Color.yellow);
-        itemBannerButton.setOpaque(true);
+        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/ItemBannerButton.png");
+        itemBannerButton.setIcon(icon);
+        itemBannerButton.setBorder(BorderFactory.createLineBorder(Color.black));
         itemBannerButton.addActionListener(this);
         this.add(itemBannerButton);
     }
 
-    private void characterBannerPanel() {
-        characterBannerPanel.setBounds(30,30,400,275);
-        characterBannerPanel.setBackground(Color.blue);
-        characterBannerPanel.setVisible(true);
-        this.add(characterBannerPanel);
+    private void characterBannerLabel() {
+        characterBannerLabel.setBounds(30,30,400,275);
+        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/CharBanner.png");
+        characterBannerLabel.setIcon(icon);
+        characterBannerLabel.setVisible(true);
+        characterBannerLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.add(characterBannerLabel);
     }
 
-    private void itemBannerPanel() {
-        itemBannerPanel.setBounds(30,30,400,275);
-        itemBannerPanel.setBackground(Color.red);
-        itemBannerPanel.setVisible(false);
-        this.add(itemBannerPanel);
+    private void itemBannerLabel() {
+        itemBannerLabel.setBounds(30,30,400,275);
+        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/ItemBanner.png");
+        itemBannerLabel.setIcon(icon);
+        itemBannerLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        itemBannerLabel.setVisible(false);
+        this.add(itemBannerLabel);
     }
 
     //================================ACTION EVENTS==============================
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == characterBannerButton) {
-            characterBannerPanel.setVisible(true);
-            itemBannerPanel.setVisible(false);
+            characterBannerLabel.setVisible(true);
+            itemBannerLabel.setVisible(false);
         } else if (e.getSource() == itemBannerButton) {
-            characterBannerPanel.setVisible(false);
-            itemBannerPanel.setVisible(true);
+            characterBannerLabel.setVisible(false);
+            itemBannerLabel.setVisible(true);
         } else if (e.getSource() == currencyButton) {
             visibility = !visibility;
             currencyPanel.setVisible(visibility);
@@ -255,52 +262,61 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
     }
 
     private void gachaFeedback(ActionEvent e) {
-        if (e.getSource() == onePullButton && characterBannerPanel.isVisible()
+        if (e.getSource() == onePullButton && characterBannerLabel.isVisible()
                 && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
             pullCharacter();
-        } else if (e.getSource() == onePullButton && itemBannerPanel.isVisible()
+        } else if (e.getSource() == onePullButton && itemBannerLabel.isVisible()
                 && (0 <= ((this.myCurrency.getCurrency()) - 100))) {
             pullItem();
-        } else if (e.getSource() == tenPullButton && characterBannerPanel.isVisible()
+        } else if (e.getSource() == tenPullButton && characterBannerLabel.isVisible()
                 && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
             tenPullCharacter();
-        } else if (e.getSource() == tenPullButton && itemBannerPanel.isVisible()
+        } else if (e.getSource() == tenPullButton && itemBannerLabel.isVisible()
                 && (0 <= ((this.myCurrency.getCurrency()) - 1000))) {
             tenPullItem();
-        } else if (e.getSource() == showPityButton && characterBannerPanel.isVisible()) {
+        } else if (e.getSource() == showPityButton && characterBannerLabel.isVisible()) {
             System.out.println("Character Pity: " + characterGacha.getPity());
-        } else if (e.getSource() == showPityButton && itemBannerPanel.isVisible()) {
+        } else if (e.getSource() == showPityButton && itemBannerLabel.isVisible()) {
             System.out.println("Item Pity: " + itemGacha.getPity());
-        } else if (e.getSource() == closeButton && characterBannerPanel.isVisible()) {
+        } else if (e.getSource() == closeButton && characterBannerLabel.isVisible()) {
             displayTenPulledCharacter();
-        } else if (e.getSource() == closeButton && itemBannerPanel.isVisible()) {
+        } else if (e.getSource() == closeButton && itemBannerLabel.isVisible()) {
             displayTenPulledItem();
         }
     }
 
     //==========================HELPER METHODS FOR ACTION EVENTS=================
     private void pullCharacter() {
+        int prev = characterGacha.getCharacterList().size();
         characterGacha.pull();
         myCurrency.subCurrency(100);
         currencyButton.setText(String.valueOf(this.myCurrency.getCurrency()));
-        displayPulledCharacter();
+        displayPulledCharacter(prev);
     }
 
     private void pullItem() {
+        int prev = itemGacha.getItemList().size();
         itemGacha.pull();
         myCurrency.subCurrency(100);
         currencyButton.setText(String.valueOf(this.myCurrency.getCurrency()));
-        displayPulledItem();
+        displayPulledItem(prev);
     }
 
     private void tenPullCharacter() {
         int listSize = characterGacha.getCharacterList().size();
-
+        ArrayList<Integer> copiesList = new ArrayList<>();
+        ArrayList<Integer> newCopiesList = new ArrayList<>();
+        for (Characters c : characterGacha.getCharacterList()) {
+            copiesList.add(c.getCopies());
+        }
         characterGacha.tenPull();
+        for (Characters c : characterGacha.getCharacterList()) {
+            newCopiesList.add(c.getCopies());
+        }
         myCurrency.subCurrency(1000);
         currencyButton.setText(String.valueOf(this.myCurrency.getCurrency()));
 
-        if (characterGacha.getCharacterList().size() > 0) {
+        if (characterGacha.getCharacterList().size() > listSize) {
             for (int i = listSize;i < characterGacha.getCharacterList().size();i++) {
                 tenPullCharacterList.add(characterGacha.getCharacterList().get(i));
             }
@@ -320,7 +336,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
         myCurrency.subCurrency(1000);
         currencyButton.setText(String.valueOf(this.myCurrency.getCurrency()));
 
-        if (itemGacha.getItemList().size() > 0) {
+        if (itemGacha.getItemList().size() > listSize) {
             for (int i = listSize;i < itemGacha.getItemList().size();i++) {
                 tenPullItemList.add(itemGacha.getItemList().get(i));
             }
@@ -351,8 +367,10 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
         }
     }
 
-    private void displayPulledItem() {
-        if (itemGacha.getItemList().size() > 0) {
+
+    private void displayPulledItem(Integer prev) {
+        int prevListSize = prev;
+        if (itemGacha.getItemList().size() > prevListSize) {
             String name = itemGacha.getItemList().get(
                     itemGacha.getItemList().size() - 1).getName();
             pullLabel.setIcon(itemPortraits.get(name));
@@ -363,8 +381,9 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
         }
     }
 
-    private void displayPulledCharacter() {
-        if (characterGacha.getCharacterList().size() > 0) {
+    private void displayPulledCharacter(Integer prev) {
+        int prevListSize = prev;
+        if (characterGacha.getCharacterList().size() > prevListSize) {
             String name = characterGacha.getCharacterList().get(
                     characterGacha.getCharacterList().size() - 1).getName();
             pullLabel.setIcon(characterBigPortraits.get(name));
