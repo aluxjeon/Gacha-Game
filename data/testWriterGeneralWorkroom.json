@@ -1,0 +1,22 @@
+{
+    "Item Pity": 20,
+    "Character Pity": 10,
+    "Characters": [{
+        "copies": 0,
+        "item status": true,
+        "name": "Alex",
+        "item rarity": 5,
+        "equipment": true,
+        "item copies": 0,
+        "item name": "Sword",
+        "rarity": 5
+    }],
+    "Currency": 1000,
+    "name": "My work room",
+    "Items": [{
+        "copies": 0,
+        "equipped": true,
+        "name": "Sword",
+        "rarity": 5
+    }]
+}
