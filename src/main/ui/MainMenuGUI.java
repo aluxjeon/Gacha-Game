@@ -3,7 +3,6 @@ package ui;
 import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -31,6 +30,9 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     private final JButton saveButton = new JButton();
     private final JButton loadButton = new JButton();
 
+    //Makes new MainMenuGUI. Initializes myCurrency, characterGacha, itemGacha, myCharacterInventory,
+    // myItemInventory based on given parameters. Initialize the items and characters into rosters for
+    // characterGacha and itemGacha. Makes new workroom, jsonwriter, jsonreader. Makes main page GUI.
     public MainMenuGUI(Currency currency,CharacterGacha characterGacha,ItemGacha itemGacha) {
         this.myCurrency = currency;
         this.characterGacha = characterGacha;
@@ -47,25 +49,28 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
 
     //====================GUI==========================
+    //MODIFIES: this
+    //EFFECTS: Makes main page GUI and initializes its GUI components with helper
+    // methods
     public void makeMainPageGUI() {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         this.setResizable(false);
         this.setSize(600,400);
         this.getContentPane().setBackground(Color.white);
-
         hireButton();
         inventoryButton();
         saveButton();
         loadButton();
         gameTitleLabel();
         buildingImagePanel();
-
         this.setLayout(null);
         this.setVisible(true);
     }
 
     //===================GUI Components==================
+    //MODIFIES: this
+    //EFFECTS: Initialize hireButton & add to GUI
     private void hireButton() {
         hireButton.setBackground(Color.green);
         hireButton.setOpaque(true);
@@ -76,6 +81,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         this.add(hireButton);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Initialize inventoryButton & add to GUI
     private void inventoryButton() {
         inventoryButton.setBackground(Color.green);
         inventoryButton.setOpaque(true);
@@ -86,6 +93,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         this.add(inventoryButton);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Initialize saveButton & add to GUI
     private void saveButton() {
         saveButton.setBackground(Color.blue);
         saveButton.setOpaque(true);
@@ -96,6 +105,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         this.add(saveButton);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Initialize loadButton & add to GUI
     private void loadButton() {
         loadButton.setBackground(Color.blue);
         loadButton.setOpaque(true);
@@ -106,6 +117,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         this.add(loadButton);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Initialize/Creates gameTitleLabel & add to GUI
     private void gameTitleLabel() {
         JLabel gameTitleLabel = new JLabel();
         gameTitleLabel.setText("Company Inc. Game");
@@ -115,6 +128,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         this.add(gameTitleLabel);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Initialize/Creates buildingImagePanel & add to GUI
     private void buildingImagePanel() {
         JPanel buildingImagePanel = new JPanel();
         ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/building.png");
@@ -131,6 +146,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
 
     //===================ACTION EVENTS==================
+    //MODIFIES: this
+    //EFFECTS: Performs the corresponding feedback based on which button on the GUI is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loadButton) {
