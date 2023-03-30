@@ -45,7 +45,8 @@ corresponding inventory.
 - You can generate the second required action related to adding Xs to a Y by clicking on the "EMPLOYEES" button & going 
 to the InventoryMenuGUI. When there, if you have characters and items in your inventory, then you can click the weapon
 button on the ID card and you will see many items (depending on how many you have) and you will see that there is an
-"Equip" button. If you press that "Equip" button, then the item will be added to the character.
+"Equip" button. If you press that "Equip" button, then the item will be added to the character. (You can press the 
+weaponButton again to get out of the weapon menu GUI)
 - You can locate my visual component by just simply running the GUI. There will be an image of a building on
 the MainMenuGUI. By clicking on "Hire" on the MainMenuGUI, you will go to the GachaMenuGUI and see some images of the 
 character/item banners. If you have some characters or items, you can go to the InventoryMenuGUI by clicking "EMPLOYEES" 

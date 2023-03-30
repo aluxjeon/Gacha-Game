@@ -338,8 +338,8 @@ public class GachaMenuGUI extends JFrame implements ActionListener {
     //EFFECTS: Does a ten pull for characters and only display new characters. ELSE display poop
     private void tenPullCharacter() {
         int listSize = characterGacha.getCharacterList().size();
-        ArrayList<Integer> copiesList = new ArrayList<>();
-        ArrayList<Integer> newCopiesList = new ArrayList<>();
+
+        characterGacha.tenPull();
         myCurrency.subCurrency(1000);
         currencyButton.setText(String.valueOf(this.myCurrency.getCurrency()));
 
