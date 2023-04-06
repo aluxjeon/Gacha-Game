@@ -1,29 +1,9 @@
 {
-    "Item Pity": 0,
-    "Character Pity": 40,
+    "Item Pity": 10,
+    "Character Pity": 10,
     "Characters": [
         {
-            "copies": 3,
-            "item status": true,
-            "name": "TestName2",
-            "item rarity": 3,
-            "equipment": true,
-            "item copies": 0,
-            "item name": "Poop Sword",
-            "rarity": 5
-        },
-        {
-            "copies": 2,
-            "item status": true,
-            "name": "TestName4",
-            "item rarity": 3,
-            "equipment": true,
-            "item copies": 0,
-            "item name": "Poop Sword",
-            "rarity": 5
-        },
-        {
-            "copies": 2,
+            "copies": 0,
             "item status": true,
             "name": "TestName6",
             "item rarity": 3,
@@ -33,47 +13,22 @@
             "rarity": 4
         },
         {
-            "copies": 2,
-            "item status": true,
-            "name": "TestName10",
-            "item rarity": 3,
-            "equipment": true,
-            "item copies": 0,
-            "item name": "Poop Sword",
-            "rarity": 4
-        },
-        {
             "copies": 0,
             "item status": true,
-            "name": "TestName1",
+            "name": "TestName2",
             "item rarity": 3,
             "equipment": true,
             "item copies": 0,
             "item name": "Poop Sword",
             "rarity": 5
-        },
-        {
-            "copies": 1,
-            "item status": true,
-            "name": "TestName9",
-            "item rarity": 3,
-            "equipment": true,
-            "item copies": 0,
-            "item name": "Poop Sword",
-            "rarity": 4
-        },
-        {
-            "copies": 0,
-            "item status": true,
-            "name": "TestName7",
-            "item rarity": 3,
-            "equipment": true,
-            "item copies": 0,
-            "item name": "Poop Sword",
-            "rarity": 4
         }
     ],
     "Currency": 0,
     "name": "Alex's workroom",
-    "Items": []
+    "Items": [{
+        "copies": 0,
+        "equipped": false,
+        "name": "TestItem1",
+        "rarity": 4
+    }]
 }

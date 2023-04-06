@@ -175,7 +175,7 @@ public class InventoryMenuGUI extends JFrame implements ActionListener {
         itemInventoryPanel.add(equipButton);
         itemInventoryPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         itemInventoryPanel.setBounds(115, 70, 300, 270);
-        itemInventoryPanel.setBackground(Color.lightGray);
+        itemInventoryPanel.setBackground(Color.gray);
         itemInventoryPanel.setOpaque(true);
         itemInventoryPanel.setVisible(false);
         itemInventoryPanel.setLayout(null);
@@ -204,6 +204,13 @@ public class InventoryMenuGUI extends JFrame implements ActionListener {
         botWeaponButton.setBounds(200,170,75,75);
         scrollUpWeaponButton.setBounds(200,5,75,20);
         scrollDownWeaponButton.setBounds(200,245,75,20);
+        ImageIcon upIcon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Scroll_Button.png");
+        scrollUpWeaponButton.setIcon(upIcon);
+        ImageIcon downIcon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Scroll_Button 2.png");
+        scrollDownWeaponButton.setIcon(downIcon);
+        Border emptyBorder = BorderFactory.createEmptyBorder();
+        scrollDownWeaponButton.setBorder(emptyBorder);
+        scrollUpWeaponButton.setBorder(emptyBorder);
         scrollUpWeaponButton.addActionListener(this);
         scrollDownWeaponButton.addActionListener(this);
         topWeaponButton.addActionListener(this);
@@ -350,7 +357,7 @@ public class InventoryMenuGUI extends JFrame implements ActionListener {
     //EFFECTS: Initializes the scrollPanel and adds to GUI
     private void scrollPanel() {
         JPanel scrollPanel = new JPanel();
-        scrollPanel.setBackground(Color.lightGray);
+        scrollPanel.setBackground(Color.gray);
         scrollPanel.setOpaque(true);
         scrollPanel.setBounds(470,0,130,400);
         this.add(scrollPanel);
