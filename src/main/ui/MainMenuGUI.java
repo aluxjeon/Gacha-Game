@@ -1,19 +1,20 @@
 package ui;
 
 import model.*;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.awt.Font.PLAIN;
 
-public class MainMenuGUI extends JFrame implements ActionListener {
+public class MainMenuGUI extends JFrame implements ActionListener, WindowListener, WindowFocusListener,
+        WindowStateListener {
     private final Item baseSword = new Item("Poop Sword",3,true,0);
     private final ArrayList<Characters> myCharacterInventory;
     private final ArrayList<Item> myItemInventory;
@@ -66,7 +67,11 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         buildingImagePanel();
         this.setLayout(null);
         this.setVisible(true);
+        addWindowListener(this);
+        addWindowFocusListener(this);
+        addWindowStateListener(this);
     }
+
 
     //===================GUI Components==================
     //MODIFIES: this
@@ -275,5 +280,54 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         workRoom.addCurrency(myCurrency.getCurrency());
         workRoom.addPity(characterGacha.getPity(), itemGacha.getPity());
     }
+
+
+    //=========================WINDOW LISTENER==========================
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowGainedFocus(WindowEvent e) {}
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowLostFocus(WindowEvent e) {}
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowOpened(WindowEvent e) {}
+
+    //EFFECTS: When the window is closed, print out event logs to console
+    @Override
+    public void windowClosing(WindowEvent e) {
+        System.out.println("\n" + "=========Event Logs=========" + "\n");
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.toString() + "\n");
+        }
+        System.out.println("=========Event Logs=========" + "\n");
+    }
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowClosed(WindowEvent e) {}
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowIconified(WindowEvent e) {}
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowDeiconified(WindowEvent e) {}
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowActivated(WindowEvent e) {}
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowDeactivated(WindowEvent e) {}
+
+    //EFFECTS: Nothing
+    @Override
+    public void windowStateChanged(WindowEvent e) {}
 
 }

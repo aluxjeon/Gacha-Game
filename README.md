@@ -37,6 +37,9 @@ collecting characters and items, all of which is data that needs to be saved.
 - As a user, I want to be able to save my current amount of currency and pity (if I want to)
 - As a user, I want to be able to have the option to load my saved inventories, currency, and pity
 
+
+***
+
 # Instructions for Grader
 - You can generate the first required action related to adding Xs to a Y by clicking on the "Hire" button & going to the 
 GachaMenuGUI. When there, by pressing the "1 Hire"/"10 Hire" button, eventually either a Character or Item (depends on 
@@ -55,3 +58,41 @@ on MainMenuGUI and you will see at least 3-4 images of characters and/or items.
 the "Save" button
 - You can reload the state of my application by going to the MainMenuGUI and clicking the
 "Load" button
+
+***
+
+# Phase 4: Task 2
+If an item or character is pulled, then the event log should look like:
+=========Event Logs=========
+
+...
+
+Mon Apr 10 11:25:02 PDT 2023
+Pulled: Poop!
+
+Mon Apr 10 11:25:04 PDT 2023
+Pulled: Poop!
+
+Mon Apr 10 11:25:06 PDT 2023
+Pulled: TestName1!
+
+Mon Apr 10 11:25:08 PDT 2023
+Pulled: TestItem2!
+
+...
+
+=========Event Logs=========
+
+If an item is equipped onto a character, then the event log should look like:
+=========Event Logs=========
+
+...
+
+Mon Apr 10 11:26:20 PDT 2023
+TestItem1 is now equipped on TestName4
+
+...
+
+=========Event Logs=========
+
+Note: The "..." signify that the sample only is a portion of the EventLog

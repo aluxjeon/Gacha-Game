@@ -80,6 +80,7 @@ public class ItemGacha implements Collectible {
         if (itemPity == 50) {
             itemPity = 0;
             System.out.println("5 Star Item! " + (fiveStarItemRoster.get(fiveStarIndex)).getName());
+            log("Pulled: 5 Star Item!" + (fiveStarItemRoster.get(fiveStarIndex)).getName());
             if (!(itemList.contains(fiveStarItemRoster.get(fiveStarIndex)))) {
                 itemList.add(fiveStarItemRoster.get(fiveStarIndex));
             } else {
@@ -102,6 +103,7 @@ public class ItemGacha implements Collectible {
             } else {
                 fiveStarItem.addCopies();
             }
+            log("Pulled: 5 Star Item!" + fiveStarItem.getName());
             return ("5 Star Item! " + fiveStarItem.getName());
         } else if ((500 <= luck) && (luck <= 600)) {
             if (!(itemList.contains(fourStarItem))) {
@@ -109,8 +111,10 @@ public class ItemGacha implements Collectible {
             } else {
                 fourStarItem.addCopies();
             }
+            log("Pulled: 4 Star Item!" + fourStarItem.getName());
             return ("4 Star Item! " + fourStarItem.getName());
         } else {
+            log("Pulled: Poop!");
             return "Poop!";
         }
     }
@@ -152,5 +156,11 @@ public class ItemGacha implements Collectible {
             }
         }
         return itemDetails;
+    }
+
+    //MODIFIES: EventLog
+    //EFFECTS: Makes a new event with the input and adds it to EventLog
+    private void log(String event) {
+        EventLog.getInstance().logEvent(new Event(event));
     }
 }

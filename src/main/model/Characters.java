@@ -77,6 +77,7 @@ public class Characters implements Writable {
             this.item = item;
             item.equip();
         }
+        log(item.getName() + " is now equipped on " + this.getName());
     }
 
     //EFFECTS: Returns a JSONObject with character parameters (eg. name, rarity, copies,..)
@@ -101,5 +102,11 @@ public class Characters implements Writable {
         }
         json.put("copies",copies);
         return json;
+    }
+
+    //MODIFIES: EventLog
+    //EFFECTS: Makes a new event with the input and adds it to EventLog
+    private void log(String event) {
+        EventLog.getInstance().logEvent(new Event(event));
     }
 }

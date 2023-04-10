@@ -1,6 +1,5 @@
 package model;
 
-import java.io.CharConversionException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -82,6 +81,7 @@ public class CharacterGacha implements Collectible {
         if (this.characterPity == 50) {
             this.characterPity = 0;
             System.out.println("5 Star Character! " + (fiveStarCharacterRoster.get(fiveStarIndex)).getName());
+            log("Pulled: 5 Star Character! " + (fiveStarCharacterRoster.get(fiveStarIndex)).getName());
             if (!(characterList.contains(fiveStarCharacterRoster.get(fiveStarIndex)))) {
                 characterList.add(fiveStarCharacterRoster.get(fiveStarIndex));
             } else {
@@ -104,6 +104,7 @@ public class CharacterGacha implements Collectible {
             } else {
                 fiveStarCharacter.addCopies();
             }
+            log("Pulled: 5 Star Character! " + fiveStarCharacter.getName());
             return ("5 Star Character! " + fiveStarCharacter.getName());
         } else if ((500 <= luck) && (luck <= 600)) {
             if (!(characterList.contains(fourStarCharacter))) {
@@ -111,8 +112,10 @@ public class CharacterGacha implements Collectible {
             } else {
                 fourStarCharacter.addCopies();
             }
+            log("Pulled: 4 Star Character! " + fourStarCharacter.getName());
             return ("4 Star Character! " + fourStarCharacter.getName());
         } else {
+            log("Pulled: Poop!");
             return "Poop!";
         }
     }
@@ -156,4 +159,9 @@ public class CharacterGacha implements Collectible {
         return characterDetails;
     }
 
+    //MODIFIES: EventLog
+    //EFFECTS: Makes a new event with the input and adds it to EventLog
+    private void log(String event) {
+        EventLog.getInstance().logEvent(new Event(event));
+    }
 }
