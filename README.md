@@ -96,3 +96,23 @@ TestItem1 is now equipped on TestName4
 =========Event Logs=========
 
 Note: The "..." signify that the sample only is a portion of the EventLog
+
+***
+
+# Phase 4: Task 3
+
+I think there is a lot of things I could refactor to make my project
+more efficient and manageable. 
+
+First, I think one thing I could do is add an abstract class
+for my Item and Characters class and/or my CharacterGacha and ItemGacha class to extend. This is because there
+are a lot of overlap in methods and a lot of duplicate code—the gacha classes especially have a lot of copied code 
+since it does the same thing albeit with different objects. Not only would this reduce the amount of work to implement each class, but it would improve coupling by needing to 
+change code in only one place instead of having to go to both classes.
+
+Another change I would make to the design is maybe make a Pity class that counts the pity and a character/item
+inventory class since I feel like the CharacterGacha and ItemGacha class do too many things in a single class. I'd make 
+it so that CharacterGacha and ItemGacha can focus on pulling a character/item, while CharacterInventory and ItemInventory 
+can handle adding characters and items to the inventory and displaying character/item information; the Pity class could
+keep track of the character and item pity. By separating out these different functions, it makes the code more 
+readable and improves overall cohesion.
