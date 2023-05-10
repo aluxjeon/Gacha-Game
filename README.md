@@ -1,4 +1,4 @@
-# Alex's CPSC 210 Term Project
+# Alex's Project
 
 ## Description of Project:
 The application will be a gacha game where the user can pulls for characters and use them to fight enemies. 

@@ -123,7 +123,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener, WindowListen
     private void singlePullButton() {
         onePullButton = new JButton();
         onePullButton.setBounds(30,305,100,50);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Button.png");
+        ImageIcon icon = new ImageIcon("src/images/Button.png");
         onePullButton.setIcon(icon);
         onePullButton.addActionListener(this);
         this.add(onePullButton);
@@ -134,7 +134,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener, WindowListen
     private void createTenPullButton() {
         tenPullButton = new JButton();
         tenPullButton.setBounds(130,305,100,50);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Button 3.png");
+        ImageIcon icon = new ImageIcon("src/images/Button 3.png");
         tenPullButton.setIcon(icon);
         tenPullButton.addActionListener(this);
         this.add(tenPullButton);
@@ -161,7 +161,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener, WindowListen
     private void createPityButton() {
         showPityButton = new JButton();
         showPityButton.setBounds(330,305,100,50);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Button 2.png");
+        ImageIcon icon = new ImageIcon("src/images/Button 2.png");
         showPityButton.setIcon(icon);
         showPityButton.addActionListener(this);
         this.add(showPityButton);
@@ -172,7 +172,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener, WindowListen
     private void createBackButton() {
         backButton = new JButton();
         backButton.setBounds(30,10,50,20);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Back_Button.png");
+        ImageIcon icon = new ImageIcon("src/images/Back_Button.png");
         backButton.setIcon(icon);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         backButton.setBorder(emptyBorder);
@@ -225,7 +225,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener, WindowListen
     private void createCharacterBannerButton() {
         characterBannerButton = new JButton();
         characterBannerButton.setBounds(465,100,100,75);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/CharacterBannerButton.png");
+        ImageIcon icon = new ImageIcon("src/images/CharacterBannerButton.png");
         characterBannerButton.setIcon(icon);
         characterBannerButton.setBorder(BorderFactory.createLineBorder(Color.black));
         characterBannerButton.addActionListener(this);
@@ -237,7 +237,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener, WindowListen
     private void createItemBannerButton() {
         itemBannerButton = new JButton();
         itemBannerButton.setBounds(465,200,100,75);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/ItemBannerButton.png");
+        ImageIcon icon = new ImageIcon("src/images/ItemBannerButton.png");
         itemBannerButton.setIcon(icon);
         itemBannerButton.setBorder(BorderFactory.createLineBorder(Color.black));
         itemBannerButton.addActionListener(this);
@@ -248,7 +248,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener, WindowListen
     //EFFECTS: Initializes characterBannerLabel and adds to GUI
     private void createCharacterBannerLabel() {
         characterBannerLabel.setBounds(30,30,400,275);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/CharBanner.png");
+        ImageIcon icon = new ImageIcon("src/images/CharBanner.png");
         characterBannerLabel.setIcon(icon);
         characterBannerLabel.setVisible(true);
         characterBannerLabel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -259,7 +259,7 @@ public class GachaMenuGUI extends JFrame implements ActionListener, WindowListen
     //EFFECTS: Initializes itemBannerLabel and adds to GUI
     private void createItemBannerLabel() {
         itemBannerLabel.setBounds(30,30,400,275);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/ItemBanner.png");
+        ImageIcon icon = new ImageIcon("src/images/ItemBanner.png");
         itemBannerLabel.setIcon(icon);
         itemBannerLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         itemBannerLabel.setVisible(false);

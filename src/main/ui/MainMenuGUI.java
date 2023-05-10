@@ -137,7 +137,7 @@ public class MainMenuGUI extends JFrame implements ActionListener, WindowListene
     //EFFECTS: Initialize/Creates buildingImagePanel & add to GUI
     private void buildingImagePanel() {
         JPanel buildingImagePanel = new JPanel();
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/building.png");
+        ImageIcon icon = new ImageIcon("src/images/building.png");
         JLabel buildingImage = new JLabel();
         buildingImage.setBounds(0,0,200,300);
         buildingImage.setIcon(icon);

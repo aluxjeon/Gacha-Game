@@ -78,13 +78,13 @@ public class InventoryMenuGUI extends JFrame implements ActionListener, WindowLi
     // images from desktop and puts it in hashmap in the form of <name of character, ImageIcon>
     private void initializeCharacterPortraits() {
         for (Characters c : this.myCharacterInventory) {
-            ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/"
+            ImageIcon icon = new ImageIcon("src/images/"
                     + c.getName() + ".png");
             characterPortraits.put(c.getName(),icon);
-            ImageIcon bigIcon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/"
+            ImageIcon bigIcon = new ImageIcon("src/images/"
                     + c.getName() + "ID.png");
             characterBigPortraits.put(c.getName(),bigIcon);
-            ImageIcon fullIcon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/"
+            ImageIcon fullIcon = new ImageIcon("src/images/"
                     + c.getName() + "F.png");
             characterFullPortraits.put(c.getName(),fullIcon);
         }
@@ -95,10 +95,10 @@ public class InventoryMenuGUI extends JFrame implements ActionListener, WindowLi
     // images from desktop and puts it in hashmap in the form of <name of item, ImageIcon>
     private void initializeItemPortraits() {
         for (Item i : this.myItemInventory) {
-            ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/"
+            ImageIcon icon = new ImageIcon("src/images/"
                     + i.getName() + ".png");
             itemPortraits.put(i.getName(),icon);
-            ImageIcon bigIcon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/"
+            ImageIcon bigIcon = new ImageIcon("src/images/"
                     + i.getName() + "Big.png");
             itemBigPortraits.put(i.getName(),bigIcon);
         }
@@ -135,7 +135,7 @@ public class InventoryMenuGUI extends JFrame implements ActionListener, WindowLi
     //MODIFIES: this
     //EFFECTS: Sets up the back button in the inventory menu GUI
     private void backButton() {
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Back_Button.png");
+        ImageIcon icon = new ImageIcon("src/images/Back_Button.png");
         backButton.setIcon(icon);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         backButton.setBorder(emptyBorder);
@@ -209,9 +209,9 @@ public class InventoryMenuGUI extends JFrame implements ActionListener, WindowLi
         botWeaponButton.setBounds(200,170,75,75);
         scrollUpWeaponButton.setBounds(200,5,75,20);
         scrollDownWeaponButton.setBounds(200,245,75,20);
-        ImageIcon upIcon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Scroll_Button.png");
+        ImageIcon upIcon = new ImageIcon("src/images/Scroll_Button.png");
         scrollUpWeaponButton.setIcon(upIcon);
-        ImageIcon downIcon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Scroll_Button 2.png");
+        ImageIcon downIcon = new ImageIcon("src/images/Scroll_Button 2.png");
         scrollDownWeaponButton.setIcon(downIcon);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         scrollDownWeaponButton.setBorder(emptyBorder);
@@ -338,7 +338,7 @@ public class InventoryMenuGUI extends JFrame implements ActionListener, WindowLi
     //EFFECTS: Initializes the upButton and adds to GUI
     private void upButton() {
         upButton.setBounds(500,20,75,20);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Scroll_Button.png");
+        ImageIcon icon = new ImageIcon("src/images/Scroll_Button.png");
         upButton.setIcon(icon);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         upButton.setBorder(emptyBorder);
@@ -350,7 +350,7 @@ public class InventoryMenuGUI extends JFrame implements ActionListener, WindowLi
     //EFFECTS: Initializes the downButton and adds to GUI
     private void downButton() {
         downButton.setBounds(500,340,75,20);
-        ImageIcon icon = new ImageIcon("/Users/aluxj702/Desktop/CPSC210IMAGES folder/Scroll_Button 2.png");
+        ImageIcon icon = new ImageIcon("src/images/Scroll_Button 2.png");
         downButton.setIcon(icon);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         downButton.setBorder(emptyBorder);
