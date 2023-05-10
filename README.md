@@ -40,7 +40,7 @@ collecting characters and items, all of which is data that needs to be saved.
 
 ***
 
-# Instructions for Grader
+# Saving Data
 - You can generate the first required action related to adding Xs to a Y by clicking on the "Hire" button & going to the 
 GachaMenuGUI. When there, by pressing the "1 Hire"/"10 Hire" button, eventually either a Character or Item (depends on 
 which banner you are on//Can swap between the two by pressing the two buttons on the very right) will be added to your 
@@ -61,7 +61,7 @@ the "Save" button
 
 ***
 
-# Phase 4: Task 2
+# EventLog
 If an item or character is pulled, then the event log should look like:
 =========Event Logs=========
 
@@ -99,7 +99,7 @@ Note: The "..." signify that the sample only is a portion of the EventLog
 
 ***
 
-# Phase 4: Task 3
+# Reflection
 
 I think there is a lot of things I could refactor to make my project
 more efficient and manageable. 
